@@ -14,14 +14,18 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Segurança
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')
-DEBUG = True
+DEBUG = True  # Altere para False em produção!
 
 # Hosts permitidos
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-if os.getenv("RENDER"):
-    ALLOWED_HOSTS.append(os.getenv("RENDER_EXTERNAL_HOSTNAME"))
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'loja-nutri-novo.onrender.com',
+    'www.nutriamorim.com.br',
+    'nutriamorim.com.br',  # ← necessário para redirecionamento
+]
 
-# Apps instalados
+# Aplicativos instalados
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
@@ -30,11 +34,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'loja_app',
 ]
 
 # Middleware
 MIDDLEWARE = [
+    'loja_app.middleware.WWWRedirectMiddleware',  # ← redireciona nutriamorim.com.br → www.nutriamorim.com.br
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
