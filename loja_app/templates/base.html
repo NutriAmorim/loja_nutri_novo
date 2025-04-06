@@ -1,0 +1,134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bem-vindo ao Nutri Amorim{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Barra lateral esquerda */
+        .sidebar {
+            width: 250px;
+            background-color: #2E8B57; /* Cor verde-mata */
+            padding: 20px;
+            color: white;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Garante que a barra lateral fique por cima do conteúdo */
+        }
+
+        /* Ajustes para a barra lateral */
+        .sidebar ul {
+            padding-left: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Conteúdo principal */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex-grow: 1;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        h2 {
+            color: #2E8B57;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            background-color: #2E8B57;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #1C6E44;
+        }
+
+        /* Media Queries para responsividade */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+                position: relative;
+            }
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Barra lateral esquerda -->
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <!-- Página Principal - Nova opção acima de Receitas Medicinais -->
+            <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
+            <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
+            <li><a href="{% url 'pesquisas_cientificas' %}">Pesquisas Científicas</a></li>
+            <li><a href="{% url 'quem_sou_eu' %}">Sobre mim</a></li>
+            <li><a href="{% url 'quem_somos_nos' %}">Quem Somos Nós</a></li>
+        </ul>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="content">
+        {% block content %}
+        <h1>Bem-vindo ao site de Nutrição Nutri Amorim!</h1>
+        <p>Aqui você encontrará receitas, pesquisas científicas e muito mais para uma vida mais saudável.</p>
+        {% endblock %}
+    </div>
+</body>
+</html>
