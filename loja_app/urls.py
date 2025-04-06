@@ -7,4 +7,5 @@ urlpatterns = [
     path('pesquisas/', views.pesquisas, name='pesquisas_cientificas'),
     path('quem-sou-eu/', views.quem_sou_eu, name='quem_sou_eu'),
     path('quem-somos-nos/', views.quem_somos_nos, name='quem_somos_nos'),
+    path('robots.txt', views.robots_txt, name='robots_txt'),  # ✅ Adicionado
 ]

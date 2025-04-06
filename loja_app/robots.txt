@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /login/
-Sitemap: https://nutriamorim.com.br/sitemap.xml
+Disallow:
+
+Sitemap: https://www.nutriamorim.com.br/sitemap.xml
