@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Bem-vindo ao Nutri Amorim{% endblock %}</title>
+    <title>{% block title %}Nutri Amorim{% endblock %}</title>
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <style>
         body {
@@ -13,24 +13,52 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Botão de menu para mobile */
-        .menu-toggle {
-            display: none;
-            background-color: #2E8B57;
-            color: white;
-            border: none;
-            font-size: 1.5em;
+        /* Topo */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #4CAF50;
             padding: 10px 20px;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
+            color: white;
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1100;
+            width: 100%;
+            z-index: 1200;
         }
 
-        /* Barra lateral */
+        .menu-icon {
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .login-button {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Botão mobile */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Sidebar */
         .sidebar {
             width: 250px;
             background-color: #2E8B57;
@@ -38,28 +66,15 @@
             padding: 20px;
             height: 100vh;
             position: fixed;
+            top: 60px;
             left: 0;
-            top: 0;
             overflow-y: auto;
             z-index: 1000;
         }
 
-        .sidebar-header {
+        .sidebar h1, .sidebar h2 {
+            margin: 0 0 10px;
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .brand-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0;
-            color: #fff;
-        }
-
-        .menu-title {
-            font-size: 18px;
-            margin: 0;
-            color: #fff;
         }
 
         .sidebar ul {
@@ -84,66 +99,67 @@
         .content {
             margin-left: 270px;
             padding: 20px;
+            padding-top: 80px;
         }
 
         /* Responsivo */
         @media (max-width: 768px) {
             .menu-toggle {
-                display: block;
+                display: inline-block;
             }
 
             .sidebar {
                 display: none;
+                position: fixed;
+                top: 60px;
                 width: 100%;
                 height: auto;
-                position: fixed;
-                top: 50px;
-                left: 0;
-                z-index: 1000;
-                padding: 10px 20px;
             }
 
             .sidebar.active {
                 display: block;
-                background-color: #2E8B57;
             }
 
             .content {
                 margin-left: 0;
-                padding-top: 100px;
-            }
-
-            .brand-title {
-                display: none;
+                padding-top: 120px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Botão de menu para celular -->
-    <button class="menu-toggle" onclick="toggleSidebar()">☰ Nutri Amorim</button>
+    <!-- Topo -->
+    <div class="top-bar">
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <span class="logo">Nutri Amorim</span>
+        <button class="login-button" onclick="login()">Entrar</button>
+    </div>
 
-    <!-- Barra lateral -->
+    <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h1 class="brand-title">Nutri Amorim</h1>
-            <h2 class="menu-title">Menu</h2>
-        </div>
+        <h2>Menu</h2>
         <ul>
             <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
             <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
             <li><a href="{% url 'pesquisas_cientificas' %}">Pesquisas Científicas</a></li>
             <li><a href="{% url 'quem_sou_eu' %}">Sobre mim</a></li>
             <li><a href="{% url 'quem_somos_nos' %}">Quem Somos Nós</a></li>
+            <li><a href="#">Suplementos</a></li>
+            <li><a href="#">Vitaminas</a></li>
+            <li><a href="#">Cuidado Pessoal</a></li>
+            <li><a href="#">Beleza</a></li>
+            <li><a href="#">Casa Saudável</a></li>
+            <li><a href="#">Pets</a></li>
+            <li><a href="#">Alimentos</a></li>
         </ul>
     </div>
 
-    <!-- Conteúdo principal -->
+    <!-- Conteúdo -->
     <div class="content">
         {% block content %}
-        <h1>Bem-vindo ao site de Nutrição Nutri Amorim!</h1>
-        <p>Aqui você encontrará receitas, pesquisas científicas e muito mais para uma vida mais saudável.</p>
+        <h1>Bem-vindo ao site Nutri Amorim!</h1>
+        <p>Explore nossas categorias e descubra um mundo mais saudável.</p>
         {% endblock %}
     </div>
 
@@ -151,6 +167,10 @@
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('active');
+        }
+
+        function login() {
+            alert("Você clicou em Entrar! Aqui você pode implementar sua lógica de login.");
         }
     </script>
 
