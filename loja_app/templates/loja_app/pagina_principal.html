@@ -4,20 +4,23 @@
 {% block title %}Página Principal - Nutri Amorim{% endblock %}
 
 {% block content %}
-<!-- Imagem central com introdução -->
-<div style="text-align: center; margin-bottom: 60px;">
+<!-- Introdução -->
+<div style="text-align: center; margin-bottom: 60px; padding: 20px;">
     <img src="{% static 'img/saude-e-nutricao.png' %}" alt="Saúde e Nutrição"
          style="max-width: 600px; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
     <h1 style="color: #2E8B57; margin-top: 20px;">Introdução à Saúde e Nutrição</h1>
-    <p style="font-size: 1.2em;">A nutrição é a base da saúde e do bem-estar. Aqui você encontra informações que ajudam a transformar sua alimentação em um verdadeiro ato de autocuidado e prevenção natural de doenças.</p>
+    <p style="font-size: 1.1em; max-width: 800px; margin: auto;">
+        A nutrição é a base da saúde e do bem-estar. Aqui você encontra informações que ajudam a transformar sua alimentação
+        em um verdadeiro ato de autocuidado e prevenção natural de doenças.
+    </p>
 </div>
 
-<!-- Principais áreas da Nutrição -->
-<div style="margin-bottom: 60px;">
+<!-- Áreas de atuação do Nutricionista -->
+<div style="margin-bottom: 60px; padding: 20px;">
     <h2 style="color: #2E8B57;">Áreas de Atuação do Nutricionista</h2>
     <img src="{% static 'img/profissional-de-nutricao.webp' %}" alt="Profissional de Nutrição"
          style="max-width: 500px; width: 100%; height: auto; border-radius: 15px; margin: 20px auto; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-    <ul style="font-size: 1.1em; line-height: 1.8;">
+    <ul style="font-size: 1em; line-height: 1.7; max-width: 800px; margin: auto;">
         <li><strong>Nutrição Clínica:</strong> Atendimento em hospitais, clínicas e consultórios com foco em prevenção e tratamento de doenças.</li>
         <li><strong>Nutrição Esportiva:</strong> Acompanhamento de atletas e praticantes de atividades físicas para melhora de desempenho.</li>
         <li><strong>Nutrição Funcional:</strong> Abordagem integrativa, considerando o indivíduo como um todo e respeitando sua individualidade bioquímica.</li>
@@ -28,12 +31,18 @@
 </div>
 
 <!-- Diferença entre Técnico e Nutricionista -->
-<div style="text-align: center;">
+<div style="text-align: center; padding: 20px;">
     <img src="{% static 'img/diferencas-entre-tecnico-em-nutricao-e-nutricionista.webp' %}" alt="Técnico vs Nutricionista"
          style="max-width: 500px; width: 100%; height: auto; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
     
     <h2 style="color: #2E8B57;">Técnico em Nutrição x Nutricionista</h2>
-    <p style="font-size: 1.1em;"><strong>Técnico em Nutrição:</strong> Atua de forma técnica e auxiliar, acompanhando processos operacionais, higienização de alimentos, controle de qualidade e apoio na produção de refeições.</p>
-    <p style="font-size: 1.1em;"><strong>Nutricionista:</strong> Possui formação superior e é responsável pelo diagnóstico nutricional, planejamento alimentar individualizado, educação nutricional e atuação em pesquisas, políticas públicas e saúde clínica.</p>
+    <p style="font-size: 1em; max-width: 800px; margin: 0 auto 10px;">
+        <strong>Técnico em Nutrição:</strong> Atua de forma técnica e auxiliar, acompanhando processos operacionais, higienização de alimentos,
+        controle de qualidade e apoio na produção de refeições.
+    </p>
+    <p style="font-size: 1em; max-width: 800px; margin: 0 auto;">
+        <strong>Nutricionista:</strong> Possui formação superior e é responsável pelo diagnóstico nutricional, planejamento alimentar individualizado,
+        educação nutricional e atuação em pesquisas, políticas públicas e saúde clínica.
+    </p>
 </div>
 {% endblock %}

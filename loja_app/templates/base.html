@@ -9,28 +9,42 @@
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <style>
         body {
-            display: flex;
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
         }
 
-        /* Barra lateral esquerda */
+        /* Botão de menu para mobile */
+        .menu-toggle {
+            display: none;
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            font-size: 1.5em;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        /* Barra lateral */
         .sidebar {
             width: 250px;
-            background-color: #2E8B57; /* Cor verde-mata */
-            padding: 20px;
+            background-color: #2E8B57;
             color: white;
+            padding: 20px;
+            height: 100vh;
             position: fixed;
-            height: 100%;
-            top: 0;
             left: 0;
-            z-index: 1000; /* Garante que a barra lateral fique por cima do conteúdo */
+            top: 0;
+            overflow-y: auto;
         }
 
-        /* Ajustes para a barra lateral */
+        .sidebar h2 {
+            margin-top: 0;
+        }
+
         .sidebar ul {
+            list-style: none;
             padding-left: 0;
         }
 
@@ -47,74 +61,44 @@
             text-decoration: underline;
         }
 
-        /* Conteúdo principal */
+        /* Conteúdo */
         .content {
             margin-left: 270px;
             padding: 20px;
-            flex-grow: 1;
-            min-height: 100vh;
         }
 
-        h1 {
-            font-size: 2em;
-        }
-
-        p {
-            font-size: 1.2em;
-        }
-
-        h2 {
-            color: #2E8B57;
-        }
-
-        .button {
-            display: block;
-            width: 100%;
-            background-color: #2E8B57;
-            color: white;
-            padding: 10px;
-            margin-bottom: 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-radius: 5px;
-        }
-
-        .button:hover {
-            background-color: #1C6E44;
-        }
-
-        /* Media Queries para responsividade */
+        /* Responsivo */
         @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-                position: relative;
+            .menu-toggle {
+                display: block;
             }
-            .content {
-                margin-left: 0;
-            }
-        }
 
-        @media (max-width: 480px) {
             .sidebar {
+                display: none;
                 width: 100%;
                 height: auto;
+                position: relative;
+            }
+
+            .sidebar.active {
+                display: block;
             }
 
             .content {
                 margin-left: 0;
-                padding: 10px;
             }
         }
-
     </style>
 </head>
 <body>
-    <!-- Barra lateral esquerda -->
-    <div class="sidebar">
+
+    <!-- Botão de menu para celular -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+    <!-- Barra lateral -->
+    <div class="sidebar" id="sidebar">
         <h2>Menu</h2>
         <ul>
-            <!-- Página Principal - Nova opção acima de Receitas Medicinais -->
             <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
             <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
             <li><a href="{% url 'pesquisas_cientificas' %}">Pesquisas Científicas</a></li>
@@ -130,5 +114,13 @@
         <p>Aqui você encontrará receitas, pesquisas científicas e muito mais para uma vida mais saudável.</p>
         {% endblock %}
     </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
+
 </body>
 </html>
