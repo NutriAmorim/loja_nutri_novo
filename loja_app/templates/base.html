@@ -13,21 +13,34 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Botão de menu para mobile */
-        .menu-toggle {
+        /* Cabeçalho fixo em telas pequenas */
+        .topo {
             display: none;
             background-color: #2E8B57;
             color: white;
-            border: none;
-            font-size: 1.5em;
+            font-size: 1.2em;
             padding: 10px 20px;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
+            align-items: center;
             position: fixed;
             top: 0;
             left: 0;
+            width: 100%;
             z-index: 1100;
+        }
+
+        .menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .site-name {
+            font-weight: bold;
         }
 
         /* Barra lateral */
@@ -74,8 +87,8 @@
 
         /* Responsivo */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
+            .topo {
+                display: flex;
             }
 
             .sidebar {
@@ -103,8 +116,13 @@
 </head>
 <body>
 
-    <!-- Botão de menu para celular -->
-    <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
+    <!-- Topo fixo no mobile -->
+    <div class="topo" onclick="toggleSidebar()">
+        <div class="menu-container">
+            <span class="menu-icon">&#9776;</span>
+            <span class="site-name">Nutri Amorim</span>
+        </div>
+    </div>
 
     <!-- Barra lateral -->
     <div class="sidebar" id="sidebar">
