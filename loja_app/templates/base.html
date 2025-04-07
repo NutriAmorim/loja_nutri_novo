@@ -13,7 +13,6 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Topo */
         .top-bar {
             display: flex;
             align-items: center;
@@ -25,7 +24,14 @@
             top: 0;
             left: 0;
             width: 100%;
+            height: 60px;
             z-index: 1200;
+        }
+
+        .left-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .menu-toggle {
@@ -34,13 +40,11 @@
             border: none;
             color: white;
             cursor: pointer;
-            margin-right: 10px;
         }
 
         .logo {
             font-size: 22px;
             font-weight: bold;
-            margin-right: 20px;
         }
 
         .search-form {
@@ -81,7 +85,6 @@
             margin-left: 10px;
         }
 
-        /* Sidebar */
         .sidebar {
             width: 250px;
             background-color: #2E8B57;
@@ -89,10 +92,11 @@
             padding: 20px;
             height: 100vh;
             position: fixed;
-            top: 60px;
+            top: 0;
             left: 0;
             overflow-y: auto;
             z-index: 1000;
+            padding-top: 60px; /* espaço interno para não cobrir o topo */
         }
 
         .sidebar h2 {
@@ -119,19 +123,13 @@
             text-decoration: underline;
         }
 
-        /* Conteúdo */
         .content {
             margin-left: 270px;
             padding: 20px;
             padding-top: 80px;
         }
 
-        /* Responsivo */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: inline-block;
-            }
-
             .sidebar {
                 display: none;
                 position: fixed;
@@ -158,10 +156,12 @@
 </head>
 <body>
 
-    <!-- Topo -->
+    <!-- Topbar -->
     <div class="top-bar">
-        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-        <span class="logo">Nutri Amorim</span>
+        <div class="left-group">
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+            <span class="logo">Nutri Amorim</span>
+        </div>
 
         <form class="search-form" onsubmit="event.preventDefault(); search();">
             <input type="text" class="search-input" placeholder="Pesquisar...">
