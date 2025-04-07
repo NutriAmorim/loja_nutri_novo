@@ -18,7 +18,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #2E8B57; /* ← verde-mata */
+            background-color: #2E8B57; /* verde-mata */
             padding: 10px 20px;
             color: white;
             position: fixed;
@@ -66,15 +66,15 @@
             padding: 20px;
             height: 100vh;
             position: fixed;
-            top: 60px;
+            top: 0; /* agora encosta na topbar */
             left: 0;
             overflow-y: auto;
             z-index: 1000;
         }
 
-        .sidebar h1, .sidebar h2 {
+        .sidebar h2 {
             margin: 0 0 10px;
-            text-align: center;
+            text-align: left; /* alinhamento à esquerda */
         }
 
         .sidebar ul {
