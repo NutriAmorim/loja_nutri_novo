@@ -13,34 +13,21 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Cabeçalho fixo em telas pequenas */
-        .topo {
+        /* Botão de menu para mobile */
+        .menu-toggle {
             display: none;
             background-color: #2E8B57;
             color: white;
-            font-size: 1.2em;
+            border: none;
+            font-size: 1.5em;
             padding: 10px 20px;
-            align-items: center;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
             z-index: 1100;
-        }
-
-        .menu-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-icon {
-            font-size: 24px;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .site-name {
-            font-weight: bold;
         }
 
         /* Barra lateral */
@@ -57,8 +44,22 @@
             z-index: 1000;
         }
 
-        .sidebar h2 {
-            margin-top: 0;
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .brand-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            color: #fff;
+        }
+
+        .menu-title {
+            font-size: 18px;
+            margin: 0;
+            color: #fff;
         }
 
         .sidebar ul {
@@ -87,8 +88,8 @@
 
         /* Responsivo */
         @media (max-width: 768px) {
-            .topo {
-                display: flex;
+            .menu-toggle {
+                display: block;
             }
 
             .sidebar {
@@ -111,22 +112,24 @@
                 margin-left: 0;
                 padding-top: 100px;
             }
+
+            .brand-title {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Topo fixo no mobile -->
-    <div class="topo" onclick="toggleSidebar()">
-        <div class="menu-container">
-            <span class="menu-icon">&#9776;</span>
-            <span class="site-name">Nutri Amorim</span>
-        </div>
-    </div>
+    <!-- Botão de menu para celular -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰ Nutri Amorim</button>
 
     <!-- Barra lateral -->
     <div class="sidebar" id="sidebar">
-        <h2>Menu</h2>
+        <div class="sidebar-header">
+            <h1 class="brand-title">Nutri Amorim</h1>
+            <h2 class="menu-title">Menu</h2>
+        </div>
         <ul>
             <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
             <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
