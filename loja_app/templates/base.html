@@ -18,7 +18,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #2E8B57; /* verde-mata */
+            background-color: #2E8B57;
             padding: 10px 20px;
             color: white;
             position: fixed;
@@ -28,14 +28,46 @@
             z-index: 1200;
         }
 
-        .menu-icon {
-            font-size: 26px;
+        .menu-toggle {
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: white;
             cursor: pointer;
+            margin-right: 10px;
         }
 
         .logo {
             font-size: 22px;
             font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 5px;
+            padding: 2px 6px;
+            flex-grow: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+
+        .search-input {
+            border: none;
+            padding: 6px;
+            font-size: 14px;
+            flex-grow: 1;
+            outline: none;
+        }
+
+        .search-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #2E8B57;
         }
 
         .login-button {
@@ -46,16 +78,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-        }
-
-        /* Botão mobile */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5em;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
+            margin-left: 10px;
         }
 
         /* Sidebar */
@@ -66,7 +89,7 @@
             padding: 20px;
             height: 100vh;
             position: fixed;
-            top: 0; /* agora encosta na topbar */
+            top: 60px;
             left: 0;
             overflow-y: auto;
             z-index: 1000;
@@ -74,7 +97,8 @@
 
         .sidebar h2 {
             margin: 0 0 10px;
-            text-align: left; /* alinhamento à esquerda */
+            text-align: left;
+            font-size: 20px;
         }
 
         .sidebar ul {
@@ -124,6 +148,11 @@
                 margin-left: 0;
                 padding-top: 120px;
             }
+
+            .search-form {
+                max-width: 100%;
+                margin: 10px;
+            }
         }
     </style>
 </head>
@@ -133,6 +162,12 @@
     <div class="top-bar">
         <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
         <span class="logo">Nutri Amorim</span>
+
+        <form class="search-form" onsubmit="event.preventDefault(); search();">
+            <input type="text" class="search-input" placeholder="Pesquisar...">
+            <button type="submit" class="search-button">🔍</button>
+        </form>
+
         <button class="login-button" onclick="login()">Entrar</button>
     </div>
 
@@ -171,6 +206,11 @@
 
         function login() {
             alert("Você clicou em Entrar! Aqui você pode implementar sua lógica de login.");
+        }
+
+        function search() {
+            const query = document.querySelector('.search-input').value;
+            alert("Você pesquisou por: " + query);
         }
     </script>
 
