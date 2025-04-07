@@ -14,7 +14,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Segurança
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')
-DEBUG = True  # Altere para False em produção!
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # Hosts permitidos
 ALLOWED_HOSTS = [
