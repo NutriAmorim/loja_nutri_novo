@@ -49,12 +49,20 @@
             white-space: nowrap;
         }
 
-        /* ESTILO PARA TELAS MAIORES (notebook/desktops) */
+        .logo-nutri, .logo-amorim {
+            display: inline;
+        }
+
+        /* Em telas maiores, quebra em duas linhas */
         @media (min-width: 769px) {
             .logo {
                 display: flex;
                 flex-direction: column;
                 line-height: 1.1;
+            }
+
+            .logo-nutri, .logo-amorim {
+                display: block;
             }
         }
 
@@ -166,7 +174,7 @@
             .logo {
                 font-size: 20px;
                 white-space: nowrap;
-                display: block; /* força linha única no celular */
+                display: block;
             }
 
             .search-wrapper {
@@ -205,7 +213,10 @@
     <div class="top-bar">
         <div class="left-group">
             <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-            <span class="logo">Nutri Amorim</span>
+            <span class="logo">
+                <span class="logo-nutri">Nutri</span>
+                <span class="logo-amorim">Amorim</span>
+            </span>
         </div>
 
         <div class="search-wrapper">
