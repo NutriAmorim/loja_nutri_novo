@@ -31,6 +31,7 @@
         .left-group {
             display: flex;
             align-items: center;
+            flex: 1;
         }
 
         .menu-toggle {
@@ -89,7 +90,6 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .sidebar h2 {
@@ -101,6 +101,7 @@
         .sidebar ul {
             list-style: none;
             padding-left: 0;
+            flex-grow: 1;
         }
 
         .sidebar li {
@@ -116,8 +117,8 @@
             text-decoration: underline;
         }
 
-        /* Botão de login fixado na parte inferior da barra lateral */
-        .login-button {
+        /* Botão fixado na parte inferior */
+        .sidebar .login-button {
             background-color: white;
             color: #2E8B57;
             border: none;
@@ -125,11 +126,10 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            position: absolute;
-            bottom: 20px; /* 20px de distância da parte inferior */
-            left: 20px; /* Alinhamento à esquerda */
-            right: 20px; /* Alinhamento à direita */
-            width: calc(100% - 40px); /* Garante que o botão ocupe toda a largura da barra */
+            position: sticky;
+            bottom: 20px;
+            margin-top: auto; /* Isso faz o botão ir para a parte inferior */
+            width: 100%;
         }
 
         /* Conteúdo */
@@ -141,12 +141,20 @@
 
         /* Responsivo */
         @media (max-width: 768px) {
+            .top-bar {
+                padding: 10px;
+            }
+
             .menu-toggle {
                 display: inline-block;
             }
 
+            .left-group {
+                flex: 0;
+            }
+
             .sidebar {
-                display: none; /* A barra lateral fica escondida por padrão */
+                display: none;
                 position: fixed;
                 top: 60px;
                 width: 100%;
@@ -154,7 +162,7 @@
             }
 
             .sidebar.active {
-                display: flex; /* Exibe a barra lateral quando ativada */
+                display: block;
             }
 
             .content {
@@ -162,13 +170,21 @@
                 padding-top: 120px;
             }
 
-            /* Ajuste do botão de login na versão mobile */
-            .login-button {
-                position: absolute;
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-                width: calc(100% - 40px);
+            .search-form {
+                max-width: 100%;
+                margin: 10px 0;
+                flex-grow: 1;
+                padding: 4px;
+            }
+
+            .search-input {
+                font-size: 14px;
+                padding: 6px;
+                width: calc(100% - 40px); /* Ajusta a largura para a tela do celular */
+            }
+
+            .logo {
+                font-size: 18px; /* Ajuste da logo no celular */
             }
         }
     </style>
@@ -206,8 +222,8 @@
             <li><a href="#">Alimentos</a></li>
         </ul>
 
-        <!-- Botão de Entrar/Criar conta fixado no final -->
-        <button class="login-button" onclick="login()">Entrar/Criar conta</button>
+        <!-- Botão fixado -->
+        <button class="login-button" onclick="login()">Entrar / Criar Conta</button>
     </div>
 
     <!-- Conteúdo -->
