@@ -46,7 +46,16 @@
         .logo {
             font-size: 22px;
             font-weight: bold;
-            white-space: nowrap; /* Impede quebra de linha */
+            white-space: nowrap;
+        }
+
+        /* ESTILO PARA TELAS MAIORES (notebook/desktops) */
+        @media (min-width: 769px) {
+            .logo {
+                display: flex;
+                flex-direction: column;
+                line-height: 1.1;
+            }
         }
 
         .search-wrapper {
@@ -157,6 +166,7 @@
             .logo {
                 font-size: 20px;
                 white-space: nowrap;
+                display: block; /* força linha única no celular */
             }
 
             .search-wrapper {
