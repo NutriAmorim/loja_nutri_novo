@@ -32,6 +32,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-shrink: 0;
         }
 
         .menu-toggle {
@@ -45,7 +46,7 @@
         .logo {
             font-size: 22px;
             font-weight: bold;
-            line-height: 1;
+            white-space: nowrap; /* Impede quebra de linha */
         }
 
         .search-wrapper {
@@ -154,10 +155,8 @@
             }
 
             .logo {
-                font-size: 18px;
-                display: flex;
-                flex-direction: column;
-                line-height: 1.1;
+                font-size: 20px;
+                white-space: nowrap;
             }
 
             .search-wrapper {
@@ -196,7 +195,7 @@
     <div class="top-bar">
         <div class="left-group">
             <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-            <span class="logo">Nutri<br>Amorim</span>
+            <span class="logo">Nutri Amorim</span>
         </div>
 
         <div class="search-wrapper">
