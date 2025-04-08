@@ -3,224 +3,228 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Nutri Amorim{% endblock %}</title>
-    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Nutri Amorim{% endblock %}</title>
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        /* Topo */
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #2E8B57;
-            padding: 10px 20px;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1200;
-            border-bottom: 2px solid #2E8B57; /* Borda verde-mata para unir visualmente */
-        }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-        .menu-logo-container {
-            display: flex;
-            align-items: center;
-        }
+    /* Topo */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #2E8B57;
+      padding: 10px 20px;
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1200;
+    }
 
-        .menu-toggle {
-            font-size: 1.5em;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            margin-right: 10px;
-        }
+    .menu-toggle {
+      font-size: 1.5em;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      margin-right: 10px;
+    }
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
 
-        .search-form {
-            display: flex;
-            align-items: center;
-            background-color: white;
-            border-radius: 5px;
-            padding: 2px 6px;
-            flex-grow: 1;
-            max-width: 400px;
-            margin: 0 20px;
-        }
+    .search-form {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      border-radius: 5px;
+      padding: 2px 6px;
+      flex-grow: 1;
+      max-width: 400px;
+      margin: 0 20px;
+    }
 
-        .search-input {
-            border: none;
-            padding: 6px;
-            font-size: 14px;
-            flex-grow: 1;
-            outline: none;
-        }
+    .search-input {
+      border: none;
+      padding: 6px;
+      font-size: 14px;
+      flex-grow: 1;
+      outline: none;
+    }
 
-        .search-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            color: #2E8B57;
-        }
+    .search-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #2E8B57;
+    }
 
-        .login-button {
-            background-color: white;
-            color: #2E8B57;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: 20px; /* Mais espaço da borda direita */
-        }
+    .login-button {
+      background-color: white;
+      color: #2E8B57;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 50px; /* afastado da borda */
+    }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: #2E8B57;
-            color: white;
-            padding: 20px;
-            height: 100vh;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            overflow-y: auto;
-            z-index: 1000;
-            border-right: 2px solid #2E8B57; /* Mesma cor da topbar pra unir visualmente */
-        }
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #2E8B57;
+      color: white;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin-top: 60px; /* compensa altura da top-bar */
+      overflow-y: auto;
+      z-index: 1000;
+    }
 
-        .sidebar h2 {
-            margin: 0 0 10px;
-            text-align: left;
-            font-size: 20px;
-        }
+    .sidebar h2 {
+      margin: 0 0 10px;
+      text-align: left;
+      font-size: 20px;
+    }
 
-        .sidebar ul {
-            list-style: none;
-            padding-left: 0;
-        }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
 
-        .sidebar li {
-            margin-bottom: 15px;
-        }
+    .sidebar li {
+      margin-bottom: 15px;
+    }
 
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-        }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+    }
 
-        .sidebar a:hover {
-            text-decoration: underline;
-        }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
 
-        /* Conteúdo */
-        .content {
-            margin-left: 270px;
-            padding: 20px;
-            padding-top: 80px;
-        }
+    /* Conteúdo */
+    .content {
+      margin-left: 270px;
+      padding: 20px;
+      padding-top: 80px;
+    }
 
-        /* Responsivo */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: inline-block;
-            }
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: inline-block;
+      }
 
-            .sidebar {
-                display: none;
-                position: fixed;
-                top: 60px;
-                width: 100%;
-                height: auto;
-            }
+      .sidebar {
+        display: none;
+        position: fixed;
+        top: 60px;
+        width: 100%;
+        height: auto;
+        margin-top: 0;
+      }
 
-            .sidebar.active {
-                display: block;
-            }
+      .sidebar.active {
+        display: block;
+      }
 
-            .content {
-                margin-left: 0;
-                padding-top: 120px;
-            }
+      .content {
+        margin-left: 0;
+        padding-top: 120px;
+      }
 
-            .search-form {
-                max-width: 100%;
-                margin: 10px;
-            }
-        }
-    </style>
+      .search-form {
+        max-width: 100%;
+        margin: 10px;
+      }
+
+      .login-button {
+        margin-left: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Topo -->
-    <div class="top-bar">
-        <div class="menu-logo-container">
-            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-            <span class="logo">Nutri Amorim</span>
-        </div>
-
-        <form class="search-form" onsubmit="event.preventDefault(); search();">
-            <input type="text" class="search-input" placeholder="Pesquisar...">
-            <button type="submit" class="search-button">🔍</button>
-        </form>
-
-        <button class="login-button" onclick="login()">Entrar</button>
+  <!-- Topo -->
+  <div class="top-bar">
+    <div style="display: flex; align-items: center;">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+      <span class="logo">Nutri Amorim</span>
     </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <h2>Menu</h2>
-        <ul>
-            <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
-            <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
-            <li><a href="{% url 'pesquisas_cientificas' %}">Pesquisas Científicas</a></li>
-            <li><a href="{% url 'quem_sou_eu' %}">Sobre mim</a></li>
-            <li><a href="{% url 'quem_somos_nos' %}">Quem Somos Nós</a></li>
-            <li><a href="#">Suplementos</a></li>
-            <li><a href="#">Vitaminas</a></li>
-            <li><a href="#">Cuidado Pessoal</a></li>
-            <li><a href="#">Beleza</a></li>
-            <li><a href="#">Casa Saudável</a></li>
-            <li><a href="#">Pets</a></li>
-            <li><a href="#">Alimentos</a></li>
-        </ul>
-    </div>
+    <form class="search-form" onsubmit="event.preventDefault(); search();">
+      <input type="text" class="search-input" placeholder="Pesquisar..." />
+      <button type="submit" class="search-button">🔍</button>
+    </form>
 
-    <!-- Conteúdo -->
-    <div class="content">
-        {% block content %}
-        <h1>Bem-vindo ao site Nutri Amorim!</h1>
-        <p>Explore nossas categorias e descubra um mundo mais saudável.</p>
-        {% endblock %}
-    </div>
+    <button class="login-button" onclick="login()">Entrar</button>
+  </div>
 
-    <script>
-        function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-        }
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
+      <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
+      <li><a href="{% url 'pesquisas_cientificas' %}">Pesquisas Científicas</a></li>
+      <li><a href="{% url 'quem_sou_eu' %}">Sobre mim</a></li>
+      <li><a href="{% url 'quem_somos_nos' %}">Quem Somos Nós</a></li>
+      <li><a href="#">Suplementos</a></li>
+      <li><a href="#">Vitaminas</a></li>
+      <li><a href="#">Cuidado Pessoal</a></li>
+      <li><a href="#">Beleza</a></li>
+      <li><a href="#">Casa Saudável</a></li>
+      <li><a href="#">Pets</a></li>
+      <li><a href="#">Alimentos</a></li>
+    </ul>
+  </div>
 
-        function login() {
-            alert("Você clicou em Entrar! Aqui você pode implementar sua lógica de login.");
-        }
+  <!-- Conteúdo -->
+  <div class="content">
+    {% block content %}
+    <h1>Bem-vindo ao site Nutri Amorim!</h1>
+    <p>Explore nossas categorias e descubra um mundo mais saudável.</p>
+    {% endblock %}
+  </div>
 
-        function search() {
-            const query = document.querySelector('.search-input').value;
-            alert("Você pesquisou por: " + query);
-        }
-    </script>
+  <script>
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
 
+    function login() {
+      alert("Você clicou em Entrar! Aqui você pode implementar sua lógica de login.");
+    }
+
+    function search() {
+      const query = document.querySelector('.search-input').value;
+      alert("Você pesquisou por: " + query);
+    }
+  </script>
 </body>
 </html>
