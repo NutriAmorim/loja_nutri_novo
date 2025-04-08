@@ -3,218 +3,223 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Nutri Amorim{% endblock %}</title>
-  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nutri Amorim{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    /* Topo */
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #2E8B57;
-      padding: 10px 20px;
-      color: white;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1200;
-    }
+        /* Topo */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #2E8B57;
+            padding: 10px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1200;
+        }
 
-    .menu-toggle {
-      font-size: 1.5em;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      margin-right: 10px;
-    }
+        .left-group {
+            display: flex;
+            align-items: center;
+        }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      margin-right: 20px;
-    }
+        .menu-toggle {
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-right: 10px;
+        }
 
-    .search-form {
-      display: flex;
-      align-items: center;
-      background-color: white;
-      border-radius: 5px;
-      padding: 2px 6px;
-      flex-grow: 1;
-      max-width: 400px;
-      margin: 0 20px;
-    }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-left: 0;
+        }
 
-    .search-input {
-      border: none;
-      padding: 6px;
-      font-size: 14px;
-      flex-grow: 1;
-      outline: none;
-    }
+        .search-form {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 5px;
+            padding: 2px 6px;
+            flex-grow: 1;
+            max-width: 400px;
+            margin: 0 auto;
+        }
 
-    .search-button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      color: #2E8B57;
-    }
+        .search-input {
+            border: none;
+            padding: 6px;
+            font-size: 14px;
+            flex-grow: 1;
+            outline: none;
+        }
 
-    .login-button {
-      background-color: white;
-      color: #2E8B57;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-left: 30px; /* traz o botão mais pra esquerda */
-    }
+        .search-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #2E8B57;
+        }
 
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      background-color: #2E8B57;
-      color: white;
-      padding: 20px;
-      height: 100vh;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      overflow-y: auto;
-      z-index: 1000;
-      border-top: 1px solid #2E8B57; /* elimina a linha branca */
-    }
+        .login-button {
+            background-color: white;
+            color: #2E8B57;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: -3cm; /* Move 3cm para a esquerda */
+        }
 
-    .sidebar h2 {
-      margin: 0 0 10px;
-      text-align: left;
-      font-size: 20px;
-    }
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2E8B57;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            overflow-y: auto;
+            z-index: 1000;
+        }
 
-    .sidebar ul {
-      list-style: none;
-      padding-left: 0;
-    }
+        .sidebar h2 {
+            margin: 0 0 10px;
+            text-align: left;
+            font-size: 20px;
+        }
 
-    .sidebar li {
-      margin-bottom: 15px;
-    }
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
 
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-    }
+        .sidebar li {
+            margin-bottom: 15px;
+        }
 
-    .sidebar a:hover {
-      text-decoration: underline;
-    }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
 
-    /* Conteúdo */
-    .content {
-      margin-left: 270px;
-      padding: 20px;
-      padding-top: 80px;
-    }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
 
-    /* Responsivo */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: inline-block;
-      }
+        /* Conteúdo */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            padding-top: 80px;
+        }
 
-      .sidebar {
-        display: none;
-        position: fixed;
-        top: 60px;
-        width: 100%;
-        height: auto;
-      }
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: inline-block;
+            }
 
-      .sidebar.active {
-        display: block;
-      }
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 60px;
+                width: 100%;
+                height: auto;
+            }
 
-      .content {
-        margin-left: 0;
-        padding-top: 120px;
-      }
+            .sidebar.active {
+                display: block;
+            }
 
-      .search-form {
-        max-width: 100%;
-        margin: 10px;
-      }
-    }
-  </style>
+            .content {
+                margin-left: 0;
+                padding-top: 120px;
+            }
+
+            .search-form {
+                max-width: 100%;
+                margin: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Topo -->
-  <div class="top-bar">
-    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-    <span class="logo">Nutri Amorim</span>
+    <!-- Topo -->
+    <div class="top-bar">
+        <div class="left-group">
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+            <span class="logo">Nutri Amorim</span>
+        </div>
 
-    <form class="search-form" onsubmit="event.preventDefault(); search();">
-      <input type="text" class="search-input" placeholder="Pesquisar...">
-      <button type="submit" class="search-button">🔍</button>
-    </form>
+        <form class="search-form" onsubmit="event.preventDefault(); search();">
+            <input type="text" class="search-input" placeholder="Pesquisar...">
+            <button type="submit" class="search-button">🔍</button>
+        </form>
 
-    <button class="login-button" onclick="login()">Entrar</button>
-  </div>
+        <button class="login-button" onclick="login()">Entrar</button>
+    </div>
 
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
-      <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
-      <li><a href="{% url 'pesquisas_cientificas' %}">Pesquisas Científicas</a></li>
-      <li><a href="{% url 'quem_sou_eu' %}">Sobre mim</a></li>
-      <li><a href="{% url 'quem_somos_nos' %}">Quem Somos Nós</a></li>
-      <li><a href="#">Suplementos</a></li>
-      <li><a href="#">Vitaminas</a></li>
-      <li><a href="#">Cuidado Pessoal</a></li>
-      <li><a href="#">Beleza</a></li>
-      <li><a href="#">Casa Saudável</a></li>
-      <li><a href="#">Pets</a></li>
-      <li><a href="#">Alimentos</a></li>
-    </ul>
-  </div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
+            <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
+            <li><a href="{% url 'pesquisas_cientificas' %}">Pesquisas Científicas</a></li>
+            <li><a href="{% url 'quem_sou_eu' %}">Sobre mim</a></li>
+            <li><a href="{% url 'quem_somos_nos' %}">Quem Somos Nós</a></li>
+            <li><a href="#">Suplementos</a></li>
+            <li><a href="#">Vitaminas</a></li>
+            <li><a href="#">Cuidado Pessoal</a></li>
+            <li><a href="#">Beleza</a></li>
+            <li><a href="#">Casa Saudável</a></li>
+            <li><a href="#">Pets</a></li>
+            <li><a href="#">Alimentos</a></li>
+        </ul>
+    </div>
 
-  <!-- Conteúdo -->
-  <div class="content">
-    {% block content %}
-    <h1>Bem-vindo ao site Nutri Amorim!</h1>
-    <p>Explore nossas categorias e descubra um mundo mais saudável.</p>
-    {% endblock %}
-  </div>
+    <!-- Conteúdo -->
+    <div class="content">
+        {% block content %}
+        <h1>Bem-vindo ao site Nutri Amorim!</h1>
+        <p>Explore nossas categorias e descubra um mundo mais saudável.</p>
+        {% endblock %}
+    </div>
 
-  <script>
-    function toggleSidebar() {
-      var sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('active');
-    }
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
 
-    function login() {
-      alert("Você clicou em Entrar! Aqui você pode implementar sua lógica de login.");
-    }
+        function login() {
+            alert("Você clicou em Entrar! Aqui você pode implementar sua lógica de login.");
+        }
 
-    function search() {
-      const query = document.querySelector('.search-input').value;
-      alert("Você pesquisou por: " + query);
-    }
-  </script>
+        function search() {
+            const query = document.querySelector('.search-input').value;
+            alert("Você pesquisou por: " + query);
+        }
+    </script>
 
 </body>
 </html>
