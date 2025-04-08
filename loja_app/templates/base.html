@@ -26,23 +26,13 @@
             width: 100%;
             z-index: 1200;
             flex-wrap: wrap;
-            flex-direction: column;
         }
 
         .left-group {
             display: flex;
             align-items: center;
             gap: 10px;
-            width: 100%;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            line-height: 1.1;
-            white-space: nowrap;
-            display: flex;
-            flex-direction: column;
+            flex-shrink: 0;
         }
 
         .menu-toggle {
@@ -53,12 +43,29 @@
             cursor: pointer;
         }
 
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        /* Celular: logo em uma linha só */
+        @media (max-width: 768px) {
+            .logo-text {
+                display: inline;
+            }
+        }
+
         .search-wrapper {
-            width: 100%;
+            flex: 1;
             display: flex;
             justify-content: center;
-            margin-top: 8px;
-            z-index: 1300; /* acima do menu */
         }
 
         .search-form {
@@ -68,7 +75,7 @@
             border-radius: 5px;
             padding: 2px 6px;
             max-width: 400px;
-            width: 90%;
+            width: 100%;
         }
 
         .search-input {
@@ -93,7 +100,7 @@
             color: white;
             padding: 20px;
             position: fixed;
-            top: 120px;
+            top: 110px;
             left: 0;
             z-index: 1000;
             display: none;
@@ -141,27 +148,16 @@
 
         .content {
             margin-left: 0;
-            padding: 150px 20px 20px 20px;
+            padding: 20px;
+            padding-top: 150px;
         }
 
         @media (min-width: 769px) {
-            .top-bar {
-                flex-direction: row;
-            }
-
-            .left-group {
-                width: auto;
-            }
-
-            .search-wrapper {
-                margin-top: 0;
-            }
-
             .sidebar {
                 width: 250px;
-                top: 60px;
                 height: 100vh;
-                display: flex;
+                top: 60px;
+                display: flex !important;
             }
 
             .content {
@@ -177,10 +173,7 @@
     <div class="top-bar">
         <div class="left-group">
             <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-            <span class="logo">
-                <span>Nutri</span>
-                <span>Amorim</span>
-            </span>
+            <span class="logo"><span class="logo-text">Nutri Amorim</span></span>
         </div>
 
         <div class="search-wrapper">
