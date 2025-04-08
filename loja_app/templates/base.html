@@ -3,19 +3,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Nutri Amorim{% endblock %}</title>
-  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
+      background-color: #fff;
     }
 
     /* Topo */
@@ -45,7 +41,7 @@
     .logo {
       font-size: 22px;
       font-weight: bold;
-      margin-left: 10px;
+      margin-right: 20px;
     }
 
     .search-form {
@@ -83,7 +79,7 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
-      margin-left: 50px; /* afastado da borda */
+      margin-left: 30px; /* traz o botão mais pra esquerda */
     }
 
     /* Sidebar */
@@ -94,11 +90,11 @@
       padding: 20px;
       height: 100vh;
       position: fixed;
-      top: 0;
+      top: 60px;
       left: 0;
-      margin-top: 60px; /* compensa altura da top-bar */
       overflow-y: auto;
       z-index: 1000;
+      border-top: 1px solid #2E8B57; /* elimina a linha branca */
     }
 
     .sidebar h2 {
@@ -144,7 +140,6 @@
         top: 60px;
         width: 100%;
         height: auto;
-        margin-top: 0;
       }
 
       .sidebar.active {
@@ -160,10 +155,6 @@
         max-width: 100%;
         margin: 10px;
       }
-
-      .login-button {
-        margin-left: 10px;
-      }
     }
   </style>
 </head>
@@ -171,13 +162,11 @@
 
   <!-- Topo -->
   <div class="top-bar">
-    <div style="display: flex; align-items: center;">
-      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-      <span class="logo">Nutri Amorim</span>
-    </div>
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <span class="logo">Nutri Amorim</span>
 
     <form class="search-form" onsubmit="event.preventDefault(); search();">
-      <input type="text" class="search-input" placeholder="Pesquisar..." />
+      <input type="text" class="search-input" placeholder="Pesquisar...">
       <button type="submit" class="search-button">🔍</button>
     </form>
 
@@ -226,5 +215,6 @@
       alert("Você pesquisou por: " + query);
     }
   </script>
+
 </body>
 </html>
