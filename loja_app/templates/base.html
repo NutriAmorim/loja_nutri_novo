@@ -26,9 +26,10 @@
             left: 0;
             width: 100%;
             z-index: 1200;
+            border-bottom: 2px solid #2E8B57; /* Borda verde-mata para unir visualmente */
         }
 
-        .top-bar > div {
+        .menu-logo-container {
             display: flex;
             align-items: center;
         }
@@ -82,8 +83,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            margin-left: 10px;
-            margin-right: 10px; /* Adicionado para não colar na borda */
+            margin-left: 20px; /* Mais espaço da borda direita */
         }
 
         /* Sidebar */
@@ -98,13 +98,13 @@
             left: 0;
             overflow-y: auto;
             z-index: 1000;
+            border-right: 2px solid #2E8B57; /* Mesma cor da topbar pra unir visualmente */
         }
 
         .sidebar h2 {
             margin: 0 0 10px;
             text-align: left;
             font-size: 20px;
-            padding-left: 5px; /* Garante alinhamento à esquerda */
         }
 
         .sidebar ul {
@@ -166,7 +166,7 @@
 
     <!-- Topo -->
     <div class="top-bar">
-        <div>
+        <div class="menu-logo-container">
             <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
             <span class="logo">Nutri Amorim</span>
         </div>
