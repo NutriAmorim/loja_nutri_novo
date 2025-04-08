@@ -49,20 +49,11 @@
             white-space: nowrap;
         }
 
-        .logo-nutri, .logo-amorim {
-            display: inline;
-        }
-
-        /* Em telas maiores, quebra em duas linhas */
         @media (min-width: 769px) {
             .logo {
                 display: flex;
                 flex-direction: column;
                 line-height: 1.1;
-            }
-
-            .logo-nutri, .logo-amorim {
-                display: block;
             }
         }
 
@@ -162,6 +153,11 @@
             .top-bar {
                 flex-direction: column;
                 align-items: flex-start;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1100;
             }
 
             .left-group {
@@ -181,6 +177,8 @@
                 width: 100%;
                 justify-content: flex-start;
                 margin-top: 8px;
+                z-index: 1100;
+                position: relative;
             }
 
             .search-form {
@@ -193,7 +191,8 @@
                 position: fixed;
                 top: 60px;
                 width: 100%;
-                height: auto;
+                background-color: #2E8B57;
+                z-index: 1000;
             }
 
             .sidebar.active {
@@ -214,8 +213,8 @@
         <div class="left-group">
             <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
             <span class="logo">
-                <span class="logo-nutri">Nutri</span>
-                <span class="logo-amorim">Amorim</span>
+                <span>Nutri</span>
+                <span>Amorim</span>
             </span>
         </div>
 
