@@ -26,7 +26,6 @@
             left: 0;
             width: 100%;
             z-index: 1200;
-            flex-wrap: wrap;
         }
 
         .left-group {
@@ -57,8 +56,7 @@
             padding: 2px 6px;
             flex-grow: 1;
             max-width: 400px;
-            margin: 10px;
-            width: 100%;
+            margin: 0 auto;
         }
 
         .search-input {
@@ -77,20 +75,9 @@
             color: #2E8B57;
         }
 
-        .login-button {
-            background-color: white;
-            color: #2E8B57;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: calc(-3cm);
-        }
-
         /* Sidebar */
         .sidebar {
-            width: calc(250px - 2cm);
+            width: 250px;
             background-color: #2E8B57;
             color: white;
             padding: 20px;
@@ -100,6 +87,9 @@
             left: 0;
             overflow-y: auto;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .sidebar h2 {
@@ -126,34 +116,45 @@
             text-decoration: underline;
         }
 
+        /* Botão de login fixado na parte inferior da barra lateral */
+        .login-button {
+            background-color: white;
+            color: #2E8B57;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            position: absolute;
+            bottom: 20px; /* 20px de distância da parte inferior */
+            left: 20px; /* Alinhamento à esquerda */
+            right: 20px; /* Alinhamento à direita */
+            width: calc(100% - 40px); /* Garante que o botão ocupe toda a largura da barra */
+        }
+
         /* Conteúdo */
         .content {
-            margin-left: calc(250px - 2cm + 20px);
+            margin-left: 270px;
             padding: 20px;
             padding-top: 80px;
         }
 
         /* Responsivo */
         @media (max-width: 768px) {
-            .top-bar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
             .menu-toggle {
                 display: inline-block;
             }
 
             .sidebar {
-                display: none;
-                width: 100%;
+                display: none; /* A barra lateral fica escondida por padrão */
                 position: fixed;
                 top: 60px;
+                width: 100%;
                 height: auto;
             }
 
             .sidebar.active {
-                display: block;
+                display: flex; /* Exibe a barra lateral quando ativada */
             }
 
             .content {
@@ -161,16 +162,13 @@
                 padding-top: 120px;
             }
 
-            .search-form {
-                margin: 10px 0;
-                max-width: 100%;
-                width: 100%;
-            }
-
+            /* Ajuste do botão de login na versão mobile */
             .login-button {
-                align-self: flex-end;
-                margin-left: 0;
-                margin-top: 5px;
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                width: calc(100% - 40px);
             }
         }
     </style>
@@ -188,8 +186,6 @@
             <input type="text" class="search-input" placeholder="Pesquisar...">
             <button type="submit" class="search-button">🔍</button>
         </form>
-
-        <button class="login-button" onclick="login()">Entrar</button>
     </div>
 
     <!-- Sidebar -->
@@ -209,6 +205,9 @@
             <li><a href="#">Pets</a></li>
             <li><a href="#">Alimentos</a></li>
         </ul>
+
+        <!-- Botão de Entrar/Criar conta fixado no final -->
+        <button class="login-button" onclick="login()">Entrar/Criar conta</button>
     </div>
 
     <!-- Conteúdo -->
