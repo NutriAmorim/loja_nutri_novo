@@ -49,16 +49,22 @@
             white-space: nowrap;
         }
 
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
+        .desktop-line {
+            display: none;
         }
 
-        /* Celular: logo em uma linha só */
-        @media (max-width: 768px) {
-            .logo-text {
-                display: inline;
+        .mobile-inline {
+            display: inline;
+        }
+
+        @media (min-width: 769px) {
+            .desktop-line {
+                display: block;
+                line-height: 1.1;
+            }
+
+            .mobile-inline {
+                display: none;
             }
         }
 
@@ -173,7 +179,11 @@
     <div class="top-bar">
         <div class="left-group">
             <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-            <span class="logo"><span class="logo-text">Nutri Amorim</span></span>
+            <span class="logo">
+                <span class="desktop-line">Nutri</span>
+                <span class="desktop-line">Amorim</span>
+                <span class="mobile-inline">Nutri Amorim</span>
+            </span>
         </div>
 
         <div class="search-wrapper">
