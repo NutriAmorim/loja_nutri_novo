@@ -72,6 +72,7 @@
             flex: 1;
             display: flex;
             justify-content: center;
+            margin-top: 10px;
         }
 
         .search-form {
@@ -98,6 +99,13 @@
             cursor: pointer;
             font-size: 16px;
             color: #2E8B57;
+        }
+
+        /* ✅ AJUSTE SÓ PARA MOBILE: barra de busca menor */
+        @media (max-width: 768px) {
+            .search-form {
+                max-width: 90%;
+            }
         }
 
         .sidebar {
@@ -169,20 +177,6 @@
             .content {
                 margin-left: 270px;
                 padding-top: 80px;
-            }
-        }
-
-        /* ✅ Ajuste para mobile */
-        @media (max-width: 768px) {
-            .search-wrapper {
-                width: 100%;
-                padding-top: 10px;
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            .search-form {
-                max-width: 100%;
             }
         }
     </style>
