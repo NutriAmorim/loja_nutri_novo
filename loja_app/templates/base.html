@@ -13,7 +13,6 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Topo */
         .top-bar {
             display: flex;
             align-items: center;
@@ -28,36 +27,14 @@
             z-index: 1200;
         }
 
-        .left-group {
-            display: flex;
-            align-items: center;
-            flex: 1;
-        }
-
-        .menu-toggle {
-            font-size: 1.5em;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            margin-left: 0;
-        }
-
         .search-form {
             display: flex;
             align-items: center;
             background-color: white;
             border-radius: 5px;
             padding: 2px 6px;
-            flex-grow: 1;
             max-width: 400px;
-            margin: 0 auto;
+            width: 100%;
         }
 
         .search-input {
@@ -76,7 +53,6 @@
             color: #2E8B57;
         }
 
-        /* Sidebar */
         .sidebar {
             width: 250px;
             background-color: #2E8B57;
@@ -117,7 +93,6 @@
             text-decoration: underline;
         }
 
-        /* Botão fixado na parte inferior */
         .sidebar .login-button {
             background-color: white;
             color: #2E8B57;
@@ -128,29 +103,36 @@
             font-weight: bold;
             position: sticky;
             bottom: 20px;
-            margin-top: auto; /* Isso faz o botão ir para a parte inferior */
+            margin-top: auto;
             width: 100%;
         }
 
-        /* Conteúdo */
         .content {
             margin-left: 270px;
             padding: 20px;
             padding-top: 80px;
         }
 
-        /* Responsivo */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            margin-left: 0;
+        }
+
+        .menu-toggle {
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
         @media (max-width: 768px) {
             .top-bar {
                 padding: 10px;
-            }
-
-            .menu-toggle {
-                display: inline-block;
-            }
-
-            .left-group {
-                flex: 0;
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .sidebar {
@@ -173,18 +155,17 @@
             .search-form {
                 max-width: 100%;
                 margin: 10px 0;
-                flex-grow: 1;
                 padding: 4px;
             }
 
             .search-input {
                 font-size: 14px;
                 padding: 6px;
-                width: calc(100% - 40px); /* Ajusta a largura para a tela do celular */
+                width: calc(100% - 40px);
             }
 
             .logo {
-                font-size: 18px; /* Ajuste da logo no celular */
+                font-size: 18px;
             }
         }
     </style>
@@ -193,15 +174,20 @@
 
     <!-- Topo -->
     <div class="top-bar">
-        <div class="left-group">
+        <div class="left-group" style="flex: 0 0 auto; display: flex; align-items: center;">
             <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
             <span class="logo">Nutri Amorim</span>
         </div>
 
-        <form class="search-form" onsubmit="event.preventDefault(); search();">
-            <input type="text" class="search-input" placeholder="Pesquisar...">
-            <button type="submit" class="search-button">🔍</button>
-        </form>
+        <div style="flex: 1; display: flex; justify-content: center;">
+            <form class="search-form" onsubmit="event.preventDefault(); search();">
+                <input type="text" class="search-input" placeholder="Pesquisar...">
+                <button type="submit" class="search-button">🔍</button>
+            </form>
+        </div>
+
+        <!-- Espaço invisível à direita para equilibrar visualmente -->
+        <div style="flex: 0 0 200px;"></div>
     </div>
 
     <!-- Sidebar -->
@@ -222,7 +208,6 @@
             <li><a href="#">Alimentos</a></li>
         </ul>
 
-        <!-- Botão fixado -->
         <button class="login-button" onclick="login()">Entrar / Criar Conta</button>
     </div>
 
