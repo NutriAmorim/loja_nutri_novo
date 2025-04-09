@@ -4,93 +4,91 @@
 {% block title %}Sobre mim{% endblock %}
 
 {% block content %}
-<div style="display: flex; align-items: center; flex-wrap: wrap; margin-top: 40px;">
-  
-  <!-- Foto em formato circular -->
-  <div style="flex: 1; text-align: center;">
-    <img src="{% static 'img/minha_foto.jpg' %}" alt="Minha Foto"
-         style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #4CAF50;">
-  </div>
+<!-- Imagem no topo da página -->
+<div style="text-align: center; margin-top: 40px;">
+  <img src="{% static 'img/minha_foto.jpg' %}" alt="Minha Foto"
+       style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #4CAF50; margin-bottom: 20px;">
+  <h1 style="color: #2E7D32;">Sobre mim</h1>
+</div>
 
-  <!-- Texto de apresentação -->
-  <div style="flex: 2; padding: 20px;">
-    <h1 style="color: #2E7D32;">Sobre mim</h1>
-    <p>Sou estudante de <strong>Nutrição na UniCesumar</strong>, com foco em <strong>Fitoterapia</strong> e <strong>Nutrição Funcional</strong>.</p>
+<!-- Conteúdo -->
+<div style="max-width: 1000px; margin: 0 auto; padding: 20px;">
 
-    <p><strong>🥑 O que é Nutrição Funcional?</strong><br>
-    Uma abordagem que cuida da saúde de dentro para fora. A Nutrição Funcional vai além de simplesmente contar calorias ou seguir dietas da moda. Ela propõe uma nova maneira de compreender a alimentação e o corpo humano: como um sistema integrado e em constante comunicação. Seu foco é tratar a causa dos desequilíbrios, e não apenas os sintomas, por meio de um olhar individualizado, considerando o histórico clínico, a rotina, os aspectos emocionais, o estilo de vida e, principalmente, os sinais que o próprio corpo manifesta.</p>
+  <p>Sou estudante de <strong>Nutrição na UniCesumar</strong>, com foco em <strong>Fitoterapia</strong> e <strong>Nutrição Funcional</strong>.</p>
 
-    <p><strong>🌿 Como funciona?</strong><br>
-    Cada indivíduo é único, e a Nutrição Funcional respeita essa individualidade. Por isso, o plano alimentar é desenvolvido sob medida, utilizando os alimentos como ferramentas terapêuticas na prevenção e tratamento de doenças.<br>
-    Essa abordagem investiga, entre outros aspectos:<br>
-    • Desequilíbrios nutricionais<br>
-    • Disfunções intestinais<br>
-    • Processos inflamatórios<br>
-    • Alterações hormonais<br>
-    • Saúde emocional e mental</p>
+  <p><strong>🥑 O que é Nutrição Funcional?</strong><br>
+  Uma abordagem que cuida da saúde de dentro para fora. A Nutrição Funcional vai além de simplesmente contar calorias ou seguir dietas da moda. Ela propõe uma nova maneira de compreender a alimentação e o corpo humano: como um sistema integrado e em constante comunicação. Seu foco é tratar a causa dos desequilíbrios, e não apenas os sintomas, por meio de um olhar individualizado, considerando o histórico clínico, a rotina, os aspectos emocionais, o estilo de vida e, principalmente, os sinais que o próprio corpo manifesta.</p>
 
-    <p><strong>🍋 Objetivos da Nutrição Funcional</strong><br>
-    • Promover o equilíbrio do organismo<br>
-    • Fortalecer o sistema imunológico<br>
-    • Melhorar o bem-estar físico e mental<br>
-    • Reduzir inflamações silenciosas<br>
-    • Prevenir doenças crônicas e metabólicas</p>
+  <p><strong>🌿 Como funciona?</strong><br>
+  Cada indivíduo é único, e a Nutrição Funcional respeita essa individualidade. Por isso, o plano alimentar é desenvolvido sob medida, utilizando os alimentos como ferramentas terapêuticas na prevenção e tratamento de doenças.<br>
+  Essa abordagem investiga, entre outros aspectos:<br>
+  • Desequilíbrios nutricionais<br>
+  • Disfunções intestinais<br>
+  • Processos inflamatórios<br>
+  • Alterações hormonais<br>
+  • Saúde emocional e mental</p>
 
-    <p><strong>🍇 Exemplos práticos de aplicação</strong><br>
-    • Utilização de alimentos anti-inflamatórios, como cúrcuma, gengibre e azeite de oliva<br>
-    • Reequilíbrio da microbiota intestinal com prebióticos e probióticos<br>
-    • Combate à fadiga com nutrientes como magnésio, vitamina B12 e coenzima Q10<br>
-    • Redução da ansiedade por meio de alimentos que regulam o intestino e o sistema nervoso</p>
+  <p><strong>🍋 Objetivos da Nutrição Funcional</strong><br>
+  • Promover o equilíbrio do organismo<br>
+  • Fortalecer o sistema imunológico<br>
+  • Melhorar o bem-estar físico e mental<br>
+  • Reduzir inflamações silenciosas<br>
+  • Prevenir doenças crônicas e metabólicas</p>
 
-    <p><strong>💡 Por que escolher a Nutrição Funcional?</strong><br>
-    Porque ela respeita você: sua biologia, seus hábitos, sua mente e seu corpo. Em vez de seguir modelos prontos, essa abordagem propõe um plano alimentar alinhado à sua realidade. O foco não está apenas na estética, mas sim na promoção de uma saúde integral e duradoura.</p>
+  <p><strong>🍇 Exemplos práticos de aplicação</strong><br>
+  • Utilização de alimentos anti-inflamatórios, como cúrcuma, gengibre e azeite de oliva<br>
+  • Reequilíbrio da microbiota intestinal com prebióticos e probióticos<br>
+  • Combate à fadiga com nutrientes como magnésio, vitamina B12 e coenzima Q10<br>
+  • Redução da ansiedade por meio de alimentos que regulam o intestino e o sistema nervoso</p>
 
-    <p><strong>🏃‍♀️ Nutrição Esportiva: como se relaciona com a Nutrição Funcional?</strong><br>
-    A Nutrição Esportiva busca melhorar o desempenho físico, acelerar a recuperação muscular e fornecer energia adequada para treinos e competições. Quando combinada à Nutrição Funcional, a alimentação se torna ainda mais estratégica: além de otimizar a performance, ela atua na manutenção da saúde geral do organismo.<br>
-    Essa integração permite ajustar a alimentação conforme as necessidades bioquímicas individuais, prevenindo lesões, equilibrando os hormônios e controlando processos inflamatórios que podem comprometer o rendimento esportivo.</p>
+  <p><strong>💡 Por que escolher a Nutrição Funcional?</strong><br>
+  Porque ela respeita você: sua biologia, seus hábitos, sua mente e seu corpo. Em vez de seguir modelos prontos, essa abordagem propõe um plano alimentar alinhado à sua realidade. O foco não está apenas na estética, mas sim na promoção de uma saúde integral e duradoura.</p>
 
-    <p><strong>💪 Benefícios da Nutrição Esportiva com abordagem Funcional</strong><br>
-    • Recuperação muscular potencializada com nutrientes anti-inflamatórios como cúrcuma, ômega-3 e magnésio<br>
-    • Reforço da imunidade para manter a regularidade nos treinos<br>
-    • Equilíbrio hormonal, essencial para atletas e praticantes frequentes<br>
-    • Melhora da saúde intestinal, promovendo melhor absorção de nutrientes e mais disposição<br>
-    • Energia contínua, sem picos de glicose ou sensação de fadiga</p>
+  <p><strong>🏃‍♀️ Nutrição Esportiva: como se relaciona com a Nutrição Funcional?</strong><br>
+  A Nutrição Esportiva busca melhorar o desempenho físico, acelerar a recuperação muscular e fornecer energia adequada para treinos e competições. Quando combinada à Nutrição Funcional, a alimentação se torna ainda mais estratégica: além de otimizar a performance, ela atua na manutenção da saúde geral do organismo.<br>
+  Essa integração permite ajustar a alimentação conforme as necessidades bioquímicas individuais, prevenindo lesões, equilibrando os hormônios e controlando processos inflamatórios que podem comprometer o rendimento esportivo.</p>
 
-    <p><strong>🍽️ Exemplo prático</strong><br>
-    Um atleta que segue uma abordagem funcional pode ter sua dieta personalizada com foco em nutrientes como zinco, vitamina C, glutamina e probióticos, promovendo uma recuperação mais eficiente e uma saúde intestinal equilibrada — fatores que impactam diretamente na performance.</p>
+  <p><strong>💪 Benefícios da Nutrição Esportiva com abordagem Funcional</strong><br>
+  • Recuperação muscular potencializada com nutrientes anti-inflamatórios como cúrcuma, ômega-3 e magnésio<br>
+  • Reforço da imunidade para manter a regularidade nos treinos<br>
+  • Equilíbrio hormonal, essencial para atletas e praticantes frequentes<br>
+  • Melhora da saúde intestinal, promovendo melhor absorção de nutrientes e mais disposição<br>
+  • Energia contínua, sem picos de glicose ou sensação de fadiga</p>
 
-    <p><strong>🌿 O papel da Fitoterapia</strong><br>
-    A Fitoterapia atua como elo entre a Nutrição Funcional e a Nutrição Esportiva. Utiliza plantas medicinais — em forma de chás, cápsulas, extratos ou tinturas — com propriedades terapêuticas, complementando o plano alimentar com compostos bioativos que modulam o organismo, elevam o desempenho e promovem a saúde de maneira natural e eficaz.</p>
+  <p><strong>🍽️ Exemplo prático</strong><br>
+  Um atleta que segue uma abordagem funcional pode ter sua dieta personalizada com foco em nutrientes como zinco, vitamina C, glutamina e probióticos, promovendo uma recuperação mais eficiente e uma saúde intestinal equilibrada — fatores que impactam diretamente na performance.</p>
 
-    <p><strong>🧬 Aplicações da Fitoterapia</strong><br>
-    <em>Na Nutrição Funcional:</em><br>
-    • Atua diretamente nas causas dos desequilíbrios<br>
-    • Modula hormônios, intestino, inflamações e aspectos emocionais<br>
-    • Auxilia na desintoxicação<br>
-    • Fortalece o sistema imunológico<br>
-    • Atua como coadjuvante no tratamento de doenças crônicas<br>
-    <strong>Exemplos:</strong> Camomila e passiflora para ansiedade e sono | Alcachofra e boldo para suporte hepático | Ashwagandha para controle do estresse</p>
+  <p><strong>🌿 O papel da Fitoterapia</strong><br>
+  A Fitoterapia atua como elo entre a Nutrição Funcional e a Nutrição Esportiva. Utiliza plantas medicinais — em forma de chás, cápsulas, extratos ou tinturas — com propriedades terapêuticas, complementando o plano alimentar com compostos bioativos que modulam o organismo, elevam o desempenho e promovem a saúde de maneira natural e eficaz.</p>
 
-    <p><em>Na Nutrição Esportiva:</em><br>
-    • Acelera a recuperação muscular e reduz inflamações<br>
-    • Estimula o metabolismo energético e a lipólise<br>
-    • Aumenta o foco e a resistência física<br>
-    • Contribui para o equilíbrio hormonal durante treinos intensos<br>
-    <strong>Exemplos:</strong> Gengibre e cúrcuma para inflamação | Guaraná para energia | Rhodiola para resistência física e estresse</p>
+  <p><strong>🧬 Aplicações da Fitoterapia</strong><br>
+  <em>Na Nutrição Funcional:</em><br>
+  • Atua diretamente nas causas dos desequilíbrios<br>
+  • Modula hormônios, intestino, inflamações e aspectos emocionais<br>
+  • Auxilia na desintoxicação<br>
+  • Fortalece o sistema imunológico<br>
+  • Atua como coadjuvante no tratamento de doenças crônicas<br>
+  <strong>Exemplos:</strong> Camomila e passiflora para ansiedade e sono | Alcachofra e boldo para suporte hepático | Ashwagandha para controle do estresse</p>
 
-    <p><strong>🧠 Resumo Final: a Fitoterapia como aliada da saúde</strong><br>
-    <strong>Abordagem - Ação da Fitoterapia</strong><br>
-    Nutrição Funcional — Modula o organismo de forma sistêmica, tratando causas profundas<br>
-    Nutrição Esportiva — Potencializa desempenho, recuperação e níveis de energia</p>
+  <p><em>Na Nutrição Esportiva:</em><br>
+  • Acelera a recuperação muscular e reduz inflamações<br>
+  • Estimula o metabolismo energético e a lipólise<br>
+  • Aumenta o foco e a resistência física<br>
+  • Contribui para o equilíbrio hormonal durante treinos intensos<br>
+  <strong>Exemplos:</strong> Gengibre e cúrcuma para inflamação | Guaraná para energia | Rhodiola para resistência física e estresse</p>
 
-    <h2>Formação Acadêmica</h2>
-    <p>Curso o <strong>Bacharelado em Nutrição</strong> e estou em fase de formação. Tenho grande entusiasmo para promover a saúde e a qualidade de vida por meio da <strong>alimentação consciente</strong>.</p>
+  <p><strong>🧠 Resumo Final: a Fitoterapia como aliada da saúde</strong><br>
+  <strong>Abordagem - Ação da Fitoterapia</strong><br>
+  Nutrição Funcional — Modula o organismo de forma sistêmica, tratando causas profundas<br>
+  Nutrição Esportiva — Potencializa desempenho, recuperação e níveis de energia</p>
 
-    <h2>Motivação</h2>
-    <p>Escolhi essa área por <strong>acreditar profundamente</strong> no poder dos alimentos na prevenção, no tratamento e até na cura de diversas doenças. Minha <strong>motivação diária</strong> vem da vontade de ajudar as pessoas a alcançarem equilíbrio e bem-estar de forma <strong>natural, segura e sustentável</strong>.</p>
+  <h2>Formação Acadêmica</h2>
+  <p>Curso o <strong>Bacharelado em Nutrição</strong> e estou em fase de formação. Tenho grande entusiasmo para promover a saúde e a qualidade de vida por meio da <strong>alimentação consciente</strong>.</p>
 
-    <h2>Valores Pessoais</h2>
-    <p>Tenho como valores essenciais o respeito ao corpo, à individualidade, espiritualidade de cada pessoa, a empatia no cuidado e o compromisso com a educação alimentar. Acredito que a nutrição vai muito além das dietas: é uma <strong>ferramenta poderosa de transformação pessoal e social</strong>.</p>
-  </div>
+  <h2>Motivação</h2>
+  <p>Escolhi essa área por <strong>acreditar profundamente</strong> no poder dos alimentos na prevenção, no tratamento e até na cura de diversas doenças. Minha <strong>motivação diária</strong> vem da vontade de ajudar as pessoas a alcançarem equilíbrio e bem-estar de forma <strong>natural, segura e sustentável</strong>.</p>
+
+  <h2>Valores Pessoais</h2>
+  <p>Tenho como valores essenciais o respeito ao corpo, à individualidade, espiritualidade de cada pessoa, a empatia no cuidado e o compromisso com a educação alimentar. Acredito que a nutrição vai muito além das dietas: é uma <strong>ferramenta poderosa de transformação pessoal e social</strong>.</p>
 </div>
 {% endblock %}
