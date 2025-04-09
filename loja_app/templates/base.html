@@ -113,6 +113,8 @@
             display: none;
             flex-direction: column;
             box-sizing: border-box;
+            height: calc(100vh - 110px);
+            overflow-y: auto;
         }
 
         .sidebar.active {
@@ -142,16 +144,12 @@
             text-decoration: underline;
         }
 
-        .login-button {
-            background-color: white;
-            color: #2E8B57;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 20px;
-            width: 100%;
+        .sidebar .login-button {
+            display: none;
+        }
+
+        .sidebar.active .login-button {
+            display: block;
         }
 
         .content {
@@ -173,13 +171,37 @@
                 padding-top: 80px;
             }
 
-            .login-mobile-fixed {
-                display: none !important;
+            .sidebar .login-button {
+                display: block;
+                position: relative;
+                margin-top: 20px;
+                bottom: auto;
+                width: 100%;
             }
         }
 
-        /* 🔧 Ajuste da barra de pesquisa para mobile */
         @media (max-width: 768px) {
+            .sidebar .login-button {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                z-index: 1050;
+                background-color: white;
+                color: #2E8B57;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+                width: calc(100% - 40px);
+                display: none;
+            }
+
+            .sidebar.active .login-button {
+                display: block;
+            }
+
             .search-wrapper {
                 justify-content: flex-start;
                 padding-left: 20px;
@@ -189,28 +211,6 @@
 
             .search-form {
                 max-width: 280px;
-            }
-
-            .login-mobile-fixed {
-                display: block;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 90%;
-                max-width: 320px;
-                padding: 10px;
-                background-color: #2E8B57;
-                box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
-                z-index: 1100;
-            }
-
-            .login-mobile-fixed .login-button {
-                width: 100%;
-                margin-top: 0;
-            }
-
-            .sidebar {
-                padding-bottom: 70px; /* espaço extra para o botão fixo */
             }
         }
     </style>
@@ -253,10 +253,8 @@
             <li><a href="#">Pets</a></li>
             <li><a href="#">Alimentos</a></li>
         </ul>
-    </div>
 
-    <!-- Botão fixo no mobile -->
-    <div class="login-mobile-fixed">
+        <!-- Botão login -->
         <button class="login-button" onclick="login()">Entrar / Criar Conta</button>
     </div>
 
