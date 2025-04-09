@@ -105,15 +105,15 @@
             max-width: 320px;
             background-color: #2E8B57;
             color: white;
-            padding: 20px 15px 80px 15px;
+            padding: 20px 15px 20px 15px;
             position: fixed;
-            top: 120px;
+            top: 60px; /* corrigido */
             left: 0;
             z-index: 1000;
             display: none;
             flex-direction: column;
             box-sizing: border-box;
-            height: calc(100vh - 120px);
+            height: calc(100vh - 60px);
             overflow-y: auto;
             border-top: 1px solid #000;
         }
@@ -188,10 +188,16 @@
         }
 
         @media (max-width: 768px) {
+            .sidebar {
+                display: flex;
+                flex-direction: column;
+            }
+
             .sidebar .login-button {
-                position: absolute;
-                bottom: 20px;
-                left: 5%;
+                margin-top: auto;
+                margin-bottom: 20px;
+                margin-left: auto;
+                margin-right: auto;
                 width: 90%;
                 background-color: white;
                 color: #2E8B57;
@@ -200,10 +206,6 @@
                 border-radius: 8px;
                 cursor: pointer;
                 font-weight: bold;
-                display: none;
-            }
-
-            .sidebar.active .login-button {
                 display: block;
             }
 
