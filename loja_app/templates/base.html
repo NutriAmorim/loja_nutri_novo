@@ -142,7 +142,7 @@
             text-decoration: underline;
         }
 
-        .sidebar .login-button {
+        .login-button {
             background-color: white;
             color: #2E8B57;
             border: none;
@@ -172,6 +172,10 @@
                 margin-left: 270px;
                 padding-top: 80px;
             }
+
+            .login-mobile-fixed {
+                display: none !important;
+            }
         }
 
         /* 🔧 Ajuste da barra de pesquisa para mobile */
@@ -184,7 +188,29 @@
             }
 
             .search-form {
-                max-width: 280px; /* Reduzido pra caber na tela */
+                max-width: 280px;
+            }
+
+            .login-mobile-fixed {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 90%;
+                max-width: 320px;
+                padding: 10px;
+                background-color: #2E8B57;
+                box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+                z-index: 1100;
+            }
+
+            .login-mobile-fixed .login-button {
+                width: 100%;
+                margin-top: 0;
+            }
+
+            .sidebar {
+                padding-bottom: 70px; /* espaço extra para o botão fixo */
             }
         }
     </style>
@@ -227,7 +253,10 @@
             <li><a href="#">Pets</a></li>
             <li><a href="#">Alimentos</a></li>
         </ul>
+    </div>
 
+    <!-- Botão fixo no mobile -->
+    <div class="login-mobile-fixed">
         <button class="login-button" onclick="login()">Entrar / Criar Conta</button>
     </div>
 
