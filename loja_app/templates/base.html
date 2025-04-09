@@ -107,19 +107,19 @@
             color: white;
             padding: 20px 15px 80px 15px;
             position: fixed;
-            top: 120px;
+            top: 60px;
             left: 0;
             z-index: 1000;
             flex-direction: column;
             box-sizing: border-box;
-            height: calc(100vh - 120px);
+            height: calc(100vh - 60px);
             overflow-y: auto;
             border-top: 1px solid #000;
-            display: none; /* Esconde no mobile por padrão */
+            display: none;
         }
 
         .sidebar.active {
-            display: flex; /* Mostra quando ativa */
+            display: flex;
         }
 
         @media (min-width: 769px) {
@@ -191,7 +191,7 @@
 
         @media (max-width: 768px) {
             .sidebar .login-button {
-                position: fixed;
+                position: absolute;
                 bottom: 20px;
                 left: 5%;
                 width: 90%;
@@ -202,12 +202,8 @@
                 border-radius: 8px;
                 cursor: pointer;
                 font-weight: bold;
-                display: none;
-                z-index: 1500;
-            }
-
-            .sidebar.active .login-button {
                 display: block;
+                z-index: 1500;
             }
 
             .search-wrapper {
