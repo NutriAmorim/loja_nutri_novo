@@ -182,7 +182,7 @@
 
         @media (min-width: 769px) {
             .sidebar .login-button {
-                display: none !important; /* Oculta no desktop */
+                display: none !important;
             }
         }
 
@@ -213,6 +213,30 @@
 
             .search-form {
                 max-width: 280px;
+            }
+        }
+
+        /* NOVO CSS DA ÁREA DE CONTEÚDO */
+        .content {
+            margin-top: 80px;
+            padding: 20px;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        @media (min-width: 769px) {
+            .content {
+                margin-left: 250px;
+                max-width: calc(100% - 270px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 16px;
+                margin-left: 0;
+                margin-right: 0;
+                max-width: 100%;
             }
         }
     </style>
