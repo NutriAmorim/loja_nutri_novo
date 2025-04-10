@@ -72,6 +72,7 @@
             flex: 1;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         .search-form {
@@ -100,24 +101,22 @@
             color: #2E8B57;
         }
 
-        .desktop-login {
+        .login-desktop-button {
             display: none;
         }
 
         @media (min-width: 769px) {
-            .desktop-login {
-                display: block;
-            }
-
-            .top-bar .login-button {
+            .login-desktop-button {
+                display: inline-block;
                 background-color: white;
                 color: #2E8B57;
                 font-weight: bold;
                 border-radius: 8px;
                 padding: 10px 16px;
+                margin-left: 30px;
                 cursor: pointer;
                 border: none;
-                margin-left: 20px;
+                white-space: nowrap;
             }
         }
 
@@ -259,11 +258,7 @@
                 <input type="text" class="search-input" placeholder="Pesquisar...">
                 <button type="submit" class="search-button">🔍</button>
             </form>
-        </div>
-
-        <!-- Botão de login apenas no desktop -->
-        <div class="desktop-login">
-            <button class="login-button" onclick="login()">Entrar / Criar Conta</button>
+            <button class="login-desktop-button" onclick="login()">Entrar / Criar Conta</button>
         </div>
     </div>
 
@@ -285,7 +280,7 @@
             <li><a href="#">Alimentos</a></li>
         </ul>
 
-        <!-- Botão login no mobile -->
+        <!-- Botão login da sidebar (mobile e tablet) -->
         <button class="login-button" onclick="login()">Entrar / Criar Conta</button>
     </div>
 
