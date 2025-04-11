@@ -7,7 +7,7 @@
     <h2 style="text-align: center; color: #2e7d32;">Entrar</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <div style="text-align: center; margin-top: 20px;">
             <button type="submit" style="padding: 10px 20px; background-color: #2e7d32; color: white; border: none; border-radius: 5px;">Entrar</button>
         </div>
