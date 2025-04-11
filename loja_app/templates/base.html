@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -117,6 +118,7 @@
                 cursor: pointer;
                 border: none;
                 white-space: nowrap;
+                text-decoration: none;
             }
         }
 
@@ -202,6 +204,7 @@
                 display: block;
                 z-index: 1500;
                 text-align: center;
+                text-decoration: none;
             }
 
             .search-wrapper {
@@ -259,7 +262,12 @@
                 <input type="text" class="search-input" placeholder="Pesquisar...">
                 <button type="submit" class="search-button">🔍</button>
             </form>
-            <button class="login-desktop-button" onclick="login()">Entrar / Criar Conta</button>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="login-desktop-button">Sair</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-desktop-button">Entrar / Criar Conta</a>
+            {% endif %}
         </div>
     </div>
 
@@ -281,8 +289,11 @@
             <li><a href="{% url 'alimentos' %}">Alimentos</a></li>
         </ul>
 
-        <!-- Botão login da sidebar (mobile e tablet) -->
-        <button class="login-button" onclick="login()">Entrar / Criar Conta</button>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="login-button">Sair</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="login-button">Entrar / Criar Conta</a>
+        {% endif %}
     </div>
 
     <!-- Conteúdo -->
@@ -297,10 +308,6 @@
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('active');
-        }
-
-        function login() {
-            alert("Você clicou em Entrar! Aqui você pode implementar sua lógica de login.");
         }
 
         function search() {

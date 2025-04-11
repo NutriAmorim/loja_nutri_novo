@@ -1,9 +1,8 @@
-# loja_nutri_novo/urls.py
-
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
-from loja_app.sitemaps import StaticViewSitemap  # Certifique-se de que o arquivo existe!
+from loja_app.sitemaps import StaticViewSitemap
+from django.contrib.auth import views as auth_views  # <-- Importa as views de login/logout
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -11,6 +10,8 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('loja_app.urls')),  # Inclui as URLs do app loja_app
+    path('', include('loja_app.urls')),
+    path('login/', auth_views.LoginView.as_view(template_name='loja_app/login.html'), name='login'),  # <-- Rota de login
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),  # <-- Rota de logout
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
