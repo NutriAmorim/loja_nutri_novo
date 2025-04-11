@@ -18,6 +18,27 @@ def quem_sou_eu(request):
 def quem_somos_nos(request):
     return render(request, 'loja_app/quem_somos_nos.html')
 
+def suplementos(request):
+    return render(request, 'loja_app/suplementos.html')
+
+def vitaminas(request):
+    return render(request, 'loja_app/vitaminas.html')
+
+def cuidado_pessoal(request):
+    return render(request, 'loja_app/cuidado_pessoal.html')
+
+def beleza(request):
+    return render(request, 'loja_app/beleza.html')
+
+def casa_saudavel(request):
+    return render(request, 'loja_app/casa_saudavel.html')
+
+def pets(request):
+    return render(request, 'loja_app/pets.html')
+
+def alimentos(request):
+    return render(request, 'loja_app/alimentos.html')
+
 def robots_txt(request):
     robots_path = os.path.join(settings.BASE_DIR, 'loja_app', 'robots.txt')
     with open(robots_path, 'r') as file:
