@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro | Nutri Amorim{% endblock %}
+
+{% block content %}
+<div style="max-width: 500px; margin: 50px auto; background: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; color: #2e7d32;">Criar Conta</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit" style="padding: 10px 20px; background-color: #2e7d32; color: white; border: none; border-radius: 5px;">Cadastrar</button>
+        </div>
+    </form>
+    <p style="text-align: center; margin-top: 15px;">Já tem uma conta? <a href="{% url 'login' %}">Entrar</a></p>
+</div>
+{% endblock %}

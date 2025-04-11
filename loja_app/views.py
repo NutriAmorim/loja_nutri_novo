@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.shortcuts import redirect
 import os
 
 def pagina_principal(request):
@@ -38,6 +42,17 @@ def pets(request):
 
 def alimentos(request):
     return render(request, 'loja_app/alimentos.html')
+
+def cadastro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            login(request, usuario)  # Faz login automático após cadastro
+            return redirect('pagina_principal')
+    else:
+        form = UserCreationForm()
+    return render(request, 'loja_app/cadastro.html', {'form': form})
 
 def robots_txt(request):
     robots_path = os.path.join(settings.BASE_DIR, 'loja_app', 'robots.txt')
