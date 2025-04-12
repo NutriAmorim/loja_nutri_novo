@@ -103,7 +103,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'loja_app', 'static'),
+    os.path.join(BASE_DIR, 'loja_app/static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -115,9 +115,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Segurança
-SECURE_SSL_REDIRECT = not DEBUG  # Redirecionar para HTTPS em produção
-CSRF_COOKIE_SECURE = not DEBUG  # Cookie seguro para CSRF em produção
-SESSION_COOKIE_SECURE = not DEBUG  # Cookie seguro para sessão em produção
+SECURE_SSL_REDIRECT = True  # Redireciona todo o tráfego HTTP para HTTPS
+CSRF_COOKIE_SECURE = True  # Assegura que o cookie CSRF só será transmitido via HTTPS
+SESSION_COOKIE_SECURE = True  # Assegura que os cookies de sessão só serão transmitidos via HTTPS
 
 # Configuração do middleware para garantir o redirecionamento para HTTPS (se necessário)
 SECURE_HSTS_SECONDS = 31536000  # 1 ano de HSTS

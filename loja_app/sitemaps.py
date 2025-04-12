@@ -12,6 +12,13 @@ class StaticViewSitemap(Sitemap):
             'pesquisas_cientificas',
             'quem_sou_eu',
             'quem_somos_nos',
+            'suplementos',
+            'vitaminas',
+            'cuidado_pessoal',
+            'beleza',
+            'casa_saudavel',
+            'pets',
+            'alimentos',
         ]
 
     def location(self, item):
