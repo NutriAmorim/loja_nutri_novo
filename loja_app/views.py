@@ -4,9 +4,10 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.contrib import messages  # Adicione esta linha
+from django.contrib.auth.views import LoginView
 import os
 
+# Página principal
 def pagina_principal(request):
     if request.user.is_authenticated:
         messages.info(request, f"Bem-vindo(a), {request.user.username}!")  # Agora messages está definido
@@ -56,10 +57,19 @@ def cadastro(request):
             return redirect('pagina_principal')  # Redireciona direto para a home
     
         else:
-         messages.error(request, "Erro ao cadastrar. Verifique os dados informados.")
+            messages.error(request, "Erro ao cadastrar. Verifique os dados informados.")
     else:
         form = UserCreationForm()
     return render(request, 'loja_app/cadastro.html', {'form': form})
+
+# Login personalizado
+class LoginCustomizado(LoginView):
+    template_name = 'loja_app/login.html'  # Caminho para o template de login
+    redirect_authenticated_user = True  # Redireciona usuários já autenticados
+
+def form_valid(self, form):
+        login(self.request, form.get_user())
+        return redirect('pagina_principal')  # Redireciona para a página principal após login bem-sucedido
 
 # Servindo o arquivo robots.txt
 def robots_txt(request):
