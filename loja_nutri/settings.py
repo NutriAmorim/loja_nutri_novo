@@ -103,8 +103,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Diretório onde seus arquivos estáticos (CSS, JS, imagens, etc.) serão armazenados
+    os.path.join(BASE_DIR, 'loja_app', 'static'),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # WhiteNoise para servir arquivos estáticos em produção
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
