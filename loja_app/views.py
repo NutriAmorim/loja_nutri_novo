@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.contrib import messages
-from django.contrib.auth.views import LoginView
+from django.contrib import messages  # Adicione esta linha
+import os
 
 def pagina_principal(request):
     if request.user.is_authenticated:
-        messages.info(request, f"Bem-vindo(a), {request.user.username}!")
+        messages.info(request, f"Bem-vindo(a), {request.user.username}!")  # Agora messages está definido
     return render(request, 'loja_app/pagina_principal.html')
 
 # Páginas públicas
@@ -50,15 +51,14 @@ def cadastro(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             usuario = form.save()
-            login(request, usuario)
-            messages.success(request, 'Cadastro realizado com sucesso!')
-            return redirect(request.GET.get('next', 'pagina_principal'))
-        else:
-            messages.error(request, 'Por favor, corrija os erros abaixo.')
+            login(request, usuario)  # Faz login automático após cadastro
+            return redirect(request.GET.get('next', 'pagina_principal'))  # Redireciona para a página solicitada ou principal
     else:
         form = UserCreationForm()
     return render(request, 'loja_app/cadastro.html', {'form': form})
 
-# Login customizado
-class LoginCustomizado(LoginView):
-    template_name = 'loja_app/login.html'
+# Servindo o arquivo robots.txt
+def robots_txt(request):
+    robots_path = os.path.join(settings.BASE_DIR, 'loja_app', 'robots.txt')
+    with open(robots_path, 'r') as file:
+        return HttpResponse(file.read(), content_type='text/plain')
