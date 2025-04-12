@@ -67,7 +67,7 @@ class LoginCustomizado(LoginView):
     template_name = 'loja_app/login.html'  # Caminho para o template de login
     redirect_authenticated_user = True  # Redireciona usuários já autenticados
 
-def form_valid(self, form):
+    def form_valid(self, form):
         login(self.request, form.get_user())
         return redirect('pagina_principal')  # Redireciona para a página principal após login bem-sucedido
 
