@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
@@ -52,7 +53,10 @@ def cadastro(request):
         if form.is_valid():
             usuario = form.save()
             login(request, usuario)  # Faz login automático após cadastro
-            return redirect(request.GET.get('next', 'pagina_principal'))  # Redireciona para a página solicitada ou principal
+            return redirect('pagina_principal')  # Redireciona direto para a home
+    
+        else:
+         messages.error(request, "Erro ao cadastrar. Verifique os dados informados.")
     else:
         form = UserCreationForm()
     return render(request, 'loja_app/cadastro.html', {'form': form})
