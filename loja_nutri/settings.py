@@ -1,15 +1,15 @@
 import os
 import dj_database_url
 from pathlib import Path
-from dotenv import load_dotenv
 
-# Carregar variáveis de ambiente do arquivo .env
+# Carregar variáveis de ambiente (caso utilize dotenv)
+from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Secret key (mantido em segredo para produção)
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'c0bBnSfW6tEctUHx4bqFDXG9mZPAUVrk')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')
 
 # Debug
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
@@ -78,11 +78,7 @@ WSGI_APPLICATION = 'loja_nutri.wsgi.application'
 
 # Banco de dados
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', f'sqlite:///{os.path.join(BASE_DIR, "db.sqlite3")}'),
-        conn_max_age=600,
-        ssl_require=not DEBUG
-    )
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 # Validação de senha
@@ -103,7 +99,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'loja_app/static'),
+    os.path.join(BASE_DIR, 'loja_app', 'static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -114,14 +110,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Tipo de campo padrão para chaves primárias
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Segurança
-SECURE_SSL_REDIRECT = True  # Redireciona todo o tráfego HTTP para HTTPS
-CSRF_COOKIE_SECURE = True  # Assegura que o cookie CSRF só será transmitido via HTTPS
-SESSION_COOKIE_SECURE = True  # Assegura que os cookies de sessão só serão transmitidos via HTTPS
+# Segurança (aplicar somente em produção)
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
-# Configuração do middleware para garantir o redirecionamento para HTTPS (se necessário)
-SECURE_HSTS_SECONDS = 31536000  # 1 ano de HSTS
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
