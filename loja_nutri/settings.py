@@ -103,9 +103,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'loja_app/static'),
-    os.path.join(BASE_DIR, 'staticfiles')]
-
+    os.path.join(BASE_DIR, 'static'),  # Diretório onde seus arquivos estáticos (CSS, JS, imagens, etc.) serão armazenados
+]
 # WhiteNoise para servir arquivos estáticos em produção
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -121,3 +120,5 @@ SESSION_COOKIE_SECURE = not DEBUG  # Cookie seguro para sessão em produção
 SECURE_HSTS_SECONDS = 31536000  # 1 ano de HSTS
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
