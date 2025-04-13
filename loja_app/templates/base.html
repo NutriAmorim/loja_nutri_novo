@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Nutri Amorim{% endblock %}</title>
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH4y2FsZUCnY1p63Z8VgkIQ0Kcn3XdHC1dOorNh9lU7oK8oVxUsKZlZE6IJTQEVv" crossorigin="anonymous">
+
     <style>
         body {
             margin: 0;
@@ -117,6 +120,7 @@
                 cursor: pointer;
                 border: none;
                 white-space: nowrap;
+                text-decoration: none;
             }
         }
 
@@ -202,6 +206,7 @@
                 display: block;
                 z-index: 1500;
                 text-align: center;
+                text-decoration: none;
             }
 
             .search-wrapper {
@@ -216,7 +221,6 @@
             }
         }
 
-        /* NOVO CSS DA ÁREA DE CONTEÚDO */
         .content {
             margin-top: 80px;
             padding: 20px;
@@ -259,7 +263,12 @@
                 <input type="text" class="search-input" placeholder="Pesquisar...">
                 <button type="submit" class="search-button">🔍</button>
             </form>
-            <button class="login-desktop-button" onclick="login()">Entrar / Criar Conta</button>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="login-desktop-button">Sair</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-desktop-button">Entrar / Criar Conta</a>
+            {% endif %}
         </div>
     </div>
 
@@ -267,47 +276,50 @@
     <div class="sidebar" id="sidebar">
         <h2>Menu</h2>
         <ul>
-            <li><a href="{% url 'pagina_principal' %}">Página Principal</a></li>
-            <li><a href="{% url 'receitas_medicinais' %}">Receitas Medicinais</a></li>
-            <li><a href="{% url 'pesquisas_cientificas' %}">Pesquisas Científicas</a></li>
-            <li><a href="{% url 'quem_sou_eu' %}">Sobre mim</a></li>
-            <li><a href="{% url 'quem_somos_nos' %}">Quem Somos Nós</a></li>
-            <li><a href="#">Suplementos</a></li>
-            <li><a href="#">Vitaminas</a></li>
-            <li><a href="#">Cuidado Pessoal</a></li>
-            <li><a href="#">Beleza</a></li>
-            <li><a href="#">Casa Saudável</a></li>
-            <li><a href="#">Pets</a></li>
-            <li><a href="#">Alimentos</a></li>
+            <li><a href="{% url 'pagina_principal' %}" onclick="closeSidebar()">Início</a></li>
+            <li><a href="{% url 'receitas_medicinais' %}" onclick="closeSidebar()">Receitas</a></li>
+            <li><a href="{% url 'pesquisas_cientificas' %}" onclick="closeSidebar()">Pesquisas</a></li>
+            <li><a href="{% url 'quem_sou_eu' %}" onclick="closeSidebar()">Quem Sou Eu</a></li>
+            <li><a href="{% url 'quem_somos_nos' %}" onclick="closeSidebar()">Quem Somos Nós</a></li>
+            <li><a href="{% url 'suplementos' %}" onclick="closeSidebar()">Suplementos</a></li>
+            <li><a href="{% url 'vitaminas' %}" onclick="closeSidebar()">Vitaminas</a></li>
+            <li><a href="{% url 'cuidado_pessoal' %}" onclick="closeSidebar()">Cuidado Pessoal</a></li>
+            <li><a href="{% url 'beleza' %}" onclick="closeSidebar()">Beleza</a></li>
+            <li><a href="{% url 'casa_saudavel' %}" onclick="closeSidebar()">Casa Saudável</a></li>
+            <li><a href="{% url 'pets' %}" onclick="closeSidebar()">Pets</a></li>
+            <li><a href="{% url 'consultoria_online' %}" onclick="closeSidebar()">Consultoria Online</a></li>
         </ul>
 
-        <!-- Botão login da sidebar (mobile e tablet) -->
-        <button class="login-button" onclick="login()">Entrar / Criar Conta</button>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="login-button" onclick="closeSidebar()">Sair</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="login-button" onclick="closeSidebar()">Entrar / Criar Conta</a>
+        {% endif %}
     </div>
 
-    <!-- Conteúdo -->
     <div class="content">
         {% block content %}
-        <h1>Bem-vindo ao site Nutri Amorim!</h1>
-        <p>Explore nossas categorias e descubra um mundo mais saudável.</p>
+        <!-- Conteúdo dinâmico -->
         {% endblock %}
     </div>
 
     <script>
         function toggleSidebar() {
-            var sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
+            document.getElementById('sidebar').classList.toggle('active');
         }
 
-        function login() {
-            alert("Você clicou em Entrar! Aqui você pode implementar sua lógica de login.");
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('active');
         }
 
         function search() {
             const query = document.querySelector('.search-input').value;
-            alert("Você pesquisou por: " + query);
+            if (query) {
+                window.location.href = `/search/?q=${query}`;
+            }
         }
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-rbsijqGHlgjrz3McQdAsJkWzHBlv5M3hbKjj0FGU9pVo7ElCZ5hkbQ6nfoVwRjbZ" crossorigin="anonymous"></script>
 </body>
 </html>

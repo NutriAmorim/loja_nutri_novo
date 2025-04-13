@@ -1,11 +1,19 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
 import os
 
+# Página principal
 def pagina_principal(request):
+    if request.user.is_authenticated:
+        messages.info(request, f"Bem-vindo(a), {request.user.username}!")  # Agora messages está definido
     return render(request, 'loja_app/pagina_principal.html')
 
+# Páginas públicas
 def receitas_medicinais(request):
     return render(request, 'loja_app/receitas_medicinais.html')
 
@@ -18,6 +26,52 @@ def quem_sou_eu(request):
 def quem_somos_nos(request):
     return render(request, 'loja_app/quem_somos_nos.html')
 
+def suplementos(request):
+    return render(request, 'loja_app/suplementos.html')
+
+def vitaminas(request):
+    return render(request, 'loja_app/vitaminas.html')
+
+def cuidado_pessoal(request):
+    return render(request, 'loja_app/cuidado_pessoal.html')
+
+def beleza(request):
+    return render(request, 'loja_app/beleza.html')
+
+def casa_saudavel(request):
+    return render(request, 'loja_app/casa_saudavel.html')
+
+def pets(request):
+    return render(request, 'loja_app/pets.html')
+
+def alimentos(request):
+    return render(request, 'loja_app/alimentos.html')
+
+# Cadastro de usuário
+def cadastro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            login(request, usuario)  # Faz login automático após cadastro
+            return redirect('pagina_principal')  # Redireciona direto para a home
+    
+        else:
+            messages.error(request, "Erro ao cadastrar. Verifique os dados informados.")
+    else:
+        form = UserCreationForm()
+    return render(request, 'loja_app/cadastro.html', {'form': form})
+
+# Login personalizado
+class LoginCustomizado(LoginView):
+    template_name = 'loja_app/login.html'  # Caminho para o template de login
+    redirect_authenticated_user = True  # Redireciona usuários já autenticados
+
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        return redirect('pagina_principal')  # Redireciona para a página principal após login bem-sucedido
+
+# Servindo o arquivo robots.txt
 def robots_txt(request):
     robots_path = os.path.join(settings.BASE_DIR, 'loja_app', 'robots.txt')
     with open(robots_path, 'r') as file:
