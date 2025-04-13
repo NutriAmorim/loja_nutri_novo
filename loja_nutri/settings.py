@@ -98,13 +98,15 @@ USE_TZ = True
 # Arquivos estáticos (CSS, JavaScript, Imagens)
 STATIC_URL = '/static/'
 
+# Diretório onde os arquivos estáticos são coletados
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'loja_app', 'static'),
 ]
 
+# Diretório onde os arquivos estáticos serão armazenados após o collectstatic
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# WhiteNoise para servir arquivos estáticos em produção
+# Configuração do WhiteNoise para servir arquivos estáticos em produção
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Tipo de campo padrão para chaves primárias
@@ -119,5 +121,11 @@ if not DEBUG:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 
+# Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Verifique se você executou o comando collectstatic corretamente após o deploy
+# Comando no painel de Build da Render: python manage.py collectstatic --noinput
+
+# Certifique-se de que a Render está configurada para servir arquivos estáticos e de mídia
