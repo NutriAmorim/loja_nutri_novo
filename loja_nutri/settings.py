@@ -2,16 +2,18 @@ import os
 import dj_database_url
 from pathlib import Path
 
-# Carregar variáveis de ambiente (caso utilize dotenv)
-from dotenv import load_dotenv
-load_dotenv()
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Secret key (mantido em segredo para produção)
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'loja_app', 'static')]
 
-# Debug
+# WhiteNoise para arquivos estáticos em produção
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Segurança
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # Hosts permitidos
@@ -20,7 +22,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'loja-nutri-novo.onrender.com',
     'www.nutriamorim.com.br',
-    'nutriamorim.com.br',
+    'nutriamorim.com.br',  # ← necessário para redirecionamento
 ]
 
 # Aplicativos instalados
@@ -34,17 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'loja_app',
-    'crispy_forms',
-    'crispy_bootstrap5',
 ]
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap5"]
-CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Middleware
 MIDDLEWARE = [
-    'loja_app.middleware.WWWRedirectMiddleware',  # Redirecionamento para HTTPS
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Serve arquivos estáticos
+    'loja_app.middleware.WWWRedirectMiddleware',  # ← redireciona nutriamorim.com.br → www.nutriamorim.com.br
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +51,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# URLs
 ROOT_URLCONF = 'loja_nutri.urls'
 
 # Templates
@@ -76,17 +72,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'loja_nutri.wsgi.application'
 
-# Banco de dados
+# Banco de dados (Render)
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
 # Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 # Internacionalização
@@ -95,29 +99,5 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-# Arquivos estáticos (CSS, JavaScript, Imagens)
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'loja_app', 'static'),
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# WhiteNoise para servir arquivos estáticos em produção
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Tipo de campo padrão para chaves primárias
+# Tipo de campo padrão para chave primária
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Segurança (aplicar somente em produção)
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
