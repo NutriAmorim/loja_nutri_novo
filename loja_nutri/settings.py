@@ -2,9 +2,12 @@ import os
 import dj_database_url
 from pathlib import Path
 
-# Carregar variáveis de ambiente (caso utilize dotenv)
+# Carregar variáveis de ambiente (caso utilize dotenv para desenvolvimento local)
 from dotenv import load_dotenv
-load_dotenv()
+
+# Carregar variáveis de ambiente apenas se não estiver no ambiente de produção
+if os.environ.get('DJANGO_ENV') != 'production':
+    load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
