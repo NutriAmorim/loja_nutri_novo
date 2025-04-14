@@ -22,7 +22,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'loja-nutri-novo.onrender.com',
     'www.nutriamorim.com.br',
-    'nutriamorim.com.br',  # ← necessário para redirecionamento
+    'nutriamorim.com.br',
 ]
 
 # Aplicativos instalados
@@ -45,7 +45,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Middleware
 MIDDLEWARE = [
-    'loja_app.middleware.WWWRedirectMiddleware',  # ← redireciona nutriamorim.com.br → www.nutriamorim.com.br
+    'loja_app.middleware.WWWRedirectMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,10 +77,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'loja_nutri.wsgi.application'
 
-# Banco de dados (Render)
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
+# Banco de dados (Render ou local)
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
