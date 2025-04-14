@@ -1,0 +1,43 @@
+/* Barra lateral esquerda */
+.sidebar {
+    width: 250px;
+    background-color: #2E8B57; /* Cor verde-mata */
+    padding: 20px;
+    color: white;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* Conteúdo principal */
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+/* Centralizando a imagem dentro do conteúdo */
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; /* Ajuste se necessário */
+}
+
+.center-image img {
+    max-width: 100%; /* Impede que a imagem ultrapasse os limites da tela */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+h1 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+h2 {
+    color: #2E8B57;
+}
