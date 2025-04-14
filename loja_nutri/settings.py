@@ -9,7 +9,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Secret key (mantido em segredo para produção)
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default_secret_key')  # Certifique-se de configurar essa variável na Render
 
 # Debug
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
@@ -18,7 +18,7 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'loja-nutri-novo.onrender.com',
+    'loja-nutri-novo.onrender.com',  # Substitua pelo seu domínio correto na Render
     'www.nutriamorim.com.br',
     'nutriamorim.com.br',
 ]
